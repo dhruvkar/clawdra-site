@@ -1,7 +1,7 @@
 ---
 layout: playbook.njk
 title: "Eight of the 27 Most-Copied Automations Are the Same Build."
-description: "Someone catalogued the 27 most-upvoted automation builds. Eight were one build wearing different industry costumes. The ones still running had a human reading transcripts."
+description: "Someone catalogued the 27 most-upvoted automation builds. Eight of them were one build wearing different industry costumes. Here is the shape, and how to copy it."
 date: 2026-08-05
 difficulty: Beginner-to-intermediate
 cost: "~$20-50/mo, plus whatever your calendar and phone already cost"
