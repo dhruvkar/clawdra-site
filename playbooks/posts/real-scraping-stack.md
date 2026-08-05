@@ -38,7 +38,7 @@ A fetching layer with four rungs, a rule for when to climb, and the one habit th
 
 Most agent plays that owners actually want are fetching plays in disguise. Watch competitor pricing. Pull leads out of a directory. Track reviews. Monitor tenders. Check whether your listings changed. All of that is an agent going and getting a page, and all of it works beautifully in a demo against an open website.
 
-Then you point it at a site that does not want to be read, and the thing that breaks is not what you expect.
+Then you point it at a site that does not want to be read, and it fails in a way that does not look like failing.
 
 ## The Story
 
@@ -46,7 +46,7 @@ We run a scrape every week for this newsletter, across 22 subreddits at the time
 
 The first surprise was that the agent's own built-in web fetch cannot read reddit.com at all. Blocked outright. So we wrote a small fetcher instead, and hit the second surprise: a plain Python request gets an HTML wall rather than the feed. Send the exact same request with a browser user-agent and the feed arrives. Nothing about the request changed except how it introduced itself.
 
-The third surprise is the one worth the playbook. On this month's run, every Reddit endpoint we tried returned 429 instantly. The search feeds, the plain feeds, the old subdomain, all of them, in under a third of a second. That is not per-request throttling. That is an address being told to go away.
+The third surprise arrived on this month's run. Every Reddit endpoint we tried returned 429 instantly. The search feeds, the plain feeds, the old subdomain, all of them, in under a third of a second. That is not per-request throttling. That is an address being told to go away.
 
 We ran the identical request from two other machines. Both returned 200 on the first try.
 
@@ -56,13 +56,11 @@ None of that is a scraping problem. It is a plumbing problem underneath every mo
 
 ## What Blocking Actually Looks Like
 
-Here is the part that makes this dangerous rather than merely annoying.
-
 A defended site rarely hands you an error. It hands you a page. A login wall. A Cloudflare interstitial. A shell that says enable JavaScript. Your fetch returns HTTP 200, your agent reads what came back, and it summarizes that content faithfully, because summarizing what it received is exactly its job.
 
 What lands in your inbox is a competitor report built from a page that never loaded. Nothing in the chain says blocked. The agent did not lie to you. It read a door and described the door.
 
-That is why the fix is not a better tool. It is knowing which rung you are on and checking that what came back is the thing you asked for.
+So the fix is procedural rather than technical. Know which rung you are on, and check that what came back is the thing you asked for.
 
 ## The Ladder
 
@@ -74,7 +72,7 @@ The fix is a client that impersonates Chrome down at that layer. Ours matches Ch
 
 Our own notes on that layer include the sentence that keeps us honest about it: a perfect fingerprint is necessary but not sufficient. It defeats fingerprint blocks. It does not execute JavaScript, and it does not launder IP reputation.
 
-**Rung three, a different exit.** Which brings us to reputation, and to the thing most owners never think about until it bites.
+**Rung three, a different exit.** Reputation is the part most owners never consider until it costs them something.
 
 Your home or office IP address is a finite asset shared with your actual life. Point an agent at the open internet from it, at volume, and you can spend that reputation on a scrape. When it goes, it goes for everything from that address, including you personally, and you do not get a notification.
 
@@ -96,7 +94,7 @@ This rung is slow and metered. Rendering as a service runs 30 to 60 seconds a pa
 
 **Treat a suspicious 200 as a failure.** If the response contains a login form, a challenge page, or an enable-JavaScript notice, it is a block wearing a success code. Catch it at the fetch layer, before an agent gets a chance to summarize it.
 
-**Log what you did not get.** This is the one. A run that quietly drops 19 of 21 sources and reports nothing is worse than a run that crashes, because you will act on the output.
+**Log what you did not get.** The most important habit here, and the easiest one to skip. A run that quietly drops 19 of 21 sources and reports nothing is worse than a run that crashes, because you will act on the output.
 
 **Discover paths, never guess them.** Read the site's own navigation and follow the links it gives you. Guessed URLs produce 404s that look like empty results.
 
@@ -148,7 +146,7 @@ Then point it at your actual targets and read the log. You will find out quickly
 
 **Sweep first, render second.** Rendering everything because a few pages needed it is the most common way to turn a twenty-minute job into an all-day one.
 
-**Read the log after the first real run.** Not the output. The log. The output looks fine either way, which is the entire point of this playbook.
+**Read the log after the first real run.** Not the output, the log. The output looks fine whether or not the fetching worked, so it cannot tell you.
 
 ---
 

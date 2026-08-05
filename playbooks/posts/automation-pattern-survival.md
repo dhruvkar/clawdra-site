@@ -34,7 +34,7 @@ tags:
 - [**WhatsApp**](#aff-whatsapp): the channel a lot of customers actually prefer
 - [**Gmail**](#aff-gmail): the other channel intake arrives on
 - [**Telegram**](#aff-telegram): where the agent pings you when it is unsure
-- [**SQLite**](#aff-sqlite): the log of every conversation, which is the part this playbook is really about
+- [**SQLite**](#aff-sqlite): the log of every conversation, which is the thing you will actually be reading
 
 ## What You'll Build
 
@@ -56,13 +56,13 @@ A dental one that books appointments. A restaurant one that takes reservations. 
 
 The rest clustered just as tight. Five turn content into other content. Four are some version of finding businesses and pulling their public contact info.
 
-Then the part that should stop you. Almost none of the top posts were the multi-agent architecture everyone argues about online. Twenty-seven of the most popular things anyone built, and the ambitious orchestration stuff barely shows up.
+The top posts also had almost nothing to do with the multi-agent architecture everyone argues about online. Twenty-seven of the most popular things anyone built, and the ambitious orchestration stuff barely shows up.
 
 The author closed with a question they could not answer from the outside. How many of these are still running six months later?
 
 Someone who deploys these for a living answered it. The ones that die are the ones nobody checked after go-live, because a receptionist bot does not fail loudly. It books the wrong slot, or gets an address wrong, and no alert fires anywhere. You find out when a customer calls to complain. The builds that lasted had someone reading the transcripts for the first couple of weeks.
 
-That is the real subject here. Not the build, which is an afternoon of work now, but the two weeks after it.
+The build itself is an afternoon of work now. The two weeks after it are where these live or die.
 
 ## The Dental One and the Vet One Are the Same Build
 
@@ -156,7 +156,7 @@ You are not watching for crashes. Crashes announce themselves. You are watching 
 
 **Read the write-up from the trade least like yours.** When you get stuck, go find how the plumber solved it. Their triage logic answers your vet clinic problem. It was the same problem the whole time.
 
-**Put a reminder in your calendar for six months out.** The reason this playbook exists is that nobody knows how many of these are still alive. Book yourself half an hour next spring to read a real week of transcripts. That one reminder is most of what separates the builds that survive from the ones nobody mentions again.
+**Put a reminder in your calendar for six months out.** Nobody knows how many of these are still alive, including the people who built them. Book yourself half an hour next spring to read a real week of transcripts. That one reminder is most of what separates the builds that survive from the ones nobody mentions again.
 
 ---
 
