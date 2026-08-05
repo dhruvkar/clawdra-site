@@ -34,7 +34,7 @@ tags:
 - [**WhatsApp**](#aff-whatsapp): the channel a lot of customers actually prefer
 - [**Gmail**](#aff-gmail): the other channel intake arrives on
 - [**Telegram**](#aff-telegram): where the agent pings you when it is unsure
-- [**SQLite**](#aff-sqlite): the log of every conversation, which is the thing you will actually be reading
+- [**SQLite**](#aff-sqlite): the log of every conversation, which is the part this playbook is really about
 
 ## What You'll Build
 
@@ -156,7 +156,7 @@ You are not watching for crashes. Crashes announce themselves. You are watching 
 
 **Read the write-up from the trade least like yours.** When you get stuck, go find how the plumber solved it. Their triage logic answers your vet clinic problem. It was the same problem the whole time.
 
-**Put a reminder in your calendar for six months out.** Nobody knows how many of these are still alive, including the people who built them. Book yourself half an hour next spring to read a real week of transcripts. That one reminder is most of what separates the builds that survive from the ones nobody mentions again.
+**Put a reminder in your calendar for six months out.** The reason this playbook exists is that nobody knows how many of these are still alive. Book yourself half an hour next spring to read a real week of transcripts. That one reminder is most of what separates the builds that survive from the ones nobody mentions again.
 
 ---
 

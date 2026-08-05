@@ -146,7 +146,7 @@ Then point it at your actual targets and read the log. You will find out quickly
 
 **Sweep first, render second.** Rendering everything because a few pages needed it is the most common way to turn a twenty-minute job into an all-day one.
 
-**Read the log after the first real run.** Not the output, the log. The output looks fine whether or not the fetching worked, so it cannot tell you.
+**Read the log after the first real run.** Not the output, the log. The output looks fine whether or not the fetching worked, which is the entire point of this playbook.
 
 ---
 

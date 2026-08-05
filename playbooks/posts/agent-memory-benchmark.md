@@ -44,7 +44,7 @@ Someone on Reddit under the handle Major-Shirt-8227 asked r/AI_Agents a few week
 
 So they built the Agentic Memory Index. Same agent setup, eight different memory systems underneath it, 272 scored tasks each. That is 2,176 tasks in total.
 
-The test design is worth copying. Of the 272 tasks, 200 were questions about facts stored across simulated multi-week working relationships. The other 72 were questions about facts that were never stored at all, sitting there to catch systems that invent memories. There was a separate scale test against a 5,000-page store. The judge was calibrated against two independent human labelers before the run.
+The test design is the part worth stealing. Of the 272 tasks, 200 were questions about facts stored across simulated multi-week working relationships. The other 72 were questions about facts that were never stored at all, sitting there to catch systems that invent memories. There was a separate scale test against a 5,000-page store. The judge was calibrated against two independent human labelers before the run.
 
 Then the result. The winner is not a product. A plain markdown wiki that the agent curates itself, following Karpathy's llm-wiki pattern, scored 98.5. Every commercial product came in below it.
 
