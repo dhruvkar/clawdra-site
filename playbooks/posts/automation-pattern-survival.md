@@ -1,6 +1,6 @@
 ---
 layout: playbook.njk
-title: "Eight of the 27 Most-Copied Automations Are the Same Build. Here's Why Yours Dies at Month Six."
+title: "Eight of the 27 Most-Copied Automations Are the Same Build."
 description: "Someone catalogued the 27 most-upvoted automation builds. Eight were one build wearing different industry costumes. The ones still running had a human reading transcripts."
 date: 2026-08-05
 difficulty: Beginner-to-intermediate
