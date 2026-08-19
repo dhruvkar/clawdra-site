@@ -6,7 +6,6 @@ date: 2026-07-21
 difficulty: Intermediate
 cost: "~$50/mo (QBO you already pay for plus agent API costs)"
 timeToSetup: "One weekend to register the app and get production API approval, then ~2 minutes per additional company."
-originalSource: "Claw Drop original build"
 originalAuthor: "Claw Drop"
 originalAuthorUrl: "https://clawdrop.org"
 issueNumber: 23

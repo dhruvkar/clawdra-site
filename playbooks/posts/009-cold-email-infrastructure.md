@@ -6,7 +6,6 @@ date: 2026-04-15
 difficulty: Intermediate
 cost: "$100-300/month (Maildoso or InboxKit + domains)"
 timeToSetup: "An afternoon to set up, 14+ days to warm up before sending"
-originalSource: "https://clawdrop.org"
 originalAuthor: "Clawdrop"
 issueNumber: 9
 permalink: /playbooks/cold-email-infrastructure/

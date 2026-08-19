@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eight of the 27 Most-Copied Automations Are the Same Build. — ClawDrop</title>
+  <meta name="description" content="Someone catalogued the 27 most-upvoted automation builds. Eight of them were one build wearing different industry costumes. Here is the shape, and how to copy it.">
+  <meta property="og:title" content="Eight of the 27 Most-Copied Automations Are the Same Build. — ClawDrop">
+  <meta property="og:description" content="Someone catalogued the 27 most-upvoted automation builds. Eight of them were one build wearing different industry costumes. Here is the shape, and how to copy it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/automation-pattern-survival/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Eight of the 27 Most-Copied Automations Are the Same Build. — ClawDrop">
+  <meta name="twitter:description" content="Someone catalogued the 27 most-upvoted automation builds. Eight of them were one build wearing different industry costumes. Here is the shape, and how to copy it.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/automation-pattern-survival/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 4, 2026</div>
+    <h1>Eight of the 27 Most-Copied Automations Are the Same Build.</h1>
+    <p class="post-description">Someone catalogued the 27 most-upvoted automation builds. Eight of them were one build wearing different industry costumes. Here is the shape, and how to copy it.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner-to-intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>~$20-50/mo, plus whatever your calendar and phone already cost</strong></span>
+      <span class="meta-badge">⏱ <strong>A weekend to build, two weeks of reading it every day</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/AykutSek/" target="_blank">AykutSek</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/automation/comments/1v4kl9z/i_went_through_the_27_mostupvoted_automation/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent runtime that holds the rules and runs the loop</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: does the same jobs if you prefer working from a terminal</li>
+<li><a href="#aff-hermes"><strong>Hermes</strong></a>: another runtime option for the same shape</li>
+<li><a href="#aff-google-calendar"><strong>Google Calendar</strong></a>: the availability the agent has to read before it promises anything</li>
+<li><a href="#aff-calendly"><strong>Calendly</strong></a>: the booking layer if your calendar is not directly reachable</li>
+<li><a href="#aff-twilio"><strong>Twilio</strong></a>: the phone number messages arrive on</li>
+<li><a href="#aff-whatsapp"><strong>WhatsApp</strong></a>: the channel a lot of customers actually prefer</li>
+<li><a href="#aff-gmail"><strong>Gmail</strong></a>: the other channel intake arrives on</li>
+<li><a href="#aff-telegram"><strong>Telegram</strong></a>: where the agent pings you when it is unsure</li>
+<li><a href="#aff-sqlite"><strong>SQLite</strong></a>: the log of every conversation, which is the part this playbook is really about</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>An intake agent, plus the thing that tells you when the intake agent is wrong.</p>
+<p>The agent part is unremarkable. A message arrives, it works out what the person wants, checks whether you can actually do it, books it, and writes down what happened. Five steps, and four of them are easy now.</p>
+<p>The second piece is a daily digest of what your agent did, written in sentences, sent somewhere you will actually look. Not a dashboard. Just a short list of the conversations it had and the calls it made, once a day, on your phone.</p>
+<p>Almost nobody builds the second piece, and that is roughly why so few of these are still running a year later.</p>
+<h2>The Story</h2>
+<p>Someone posted this on Reddit under the handle AykutSek, in r/automation. They did the boring work nobody bothers with. They went through the 27 most-upvoted automation builds people had posted and looked at what each one actually did, instead of what it was called.</p>
+<p>Eight of the 27 were the same build.</p>
+<p>A dental one that books appointments. A restaurant one that takes reservations. A vet clinic one that sorts urgent from routine. A website chat that captures the lead before the visitor leaves. Four industries, four write-ups, four sets of screenshots. Underneath, the same five moves: message comes in, figure out what they want, look it up, book it, log it.</p>
+<p>The rest clustered just as tight. Five turn content into other content. Four are some version of finding businesses and pulling their public contact info.</p>
+<p>The top posts also had almost nothing to do with the multi-agent architecture everyone argues about online. Twenty-seven of the most popular things anyone built, and the ambitious orchestration stuff barely shows up.</p>
+<p>The author closed with a question they could not answer from the outside. How many of these are still running six months later?</p>
+<p>Someone who deploys these for a living answered it. The ones that die are the ones nobody checked after go-live, because a receptionist bot does not fail loudly. It books the wrong slot, or gets an address wrong, and no alert fires anywhere. You find out when a customer calls to complain. The builds that lasted had someone reading the transcripts for the first couple of weeks.</p>
+<p>The build itself is an afternoon of work now. The two weeks after it are where these live or die.</p>
+<h2>The Dental One and the Vet One Are the Same Build</h2>
+<p>There is a practical consequence to eight builds being one build, and it is worth more than the observation.</p>
+<p>When owners go looking for how to automate something, they search for their industry. The dental one. The HVAC one. The law firm one. They find nothing good, or one thin blog post from 2024, and they decide this has not been figured out for businesses like theirs.</p>
+<p>It has been. It is filed under somebody else's trade.</p>
+<p>A vet clinic sorting urgent from routine is doing the same job as a plumber deciding whether this is a burst pipe or a dripping faucet. A restaurant taking reservations is doing the same job as a salon booking a colorist. The dental practice confirming appointments is the physio, the tattoo studio, the driving instructor, and the guy who services your furnace.</p>
+<p>Everything that feels specific to you is something you fill in. Which services you offer. Which questions people ask. How your slots are shaped. The words your customers use. None of that is the machine, and once that lands you can stop waiting for someone to publish the version with your industry in the title.</p>
+<p>So search for the shape instead of the sector. If somebody in a trade nothing like yours published a build where a message arrives, gets understood, gets checked against something, gets booked and gets logged, you found your build. Swap the vocabulary and point it at your calendar.</p>
+<h2>The Middle Step Is the Whole Project</h2>
+<p>Four of the five steps are easy now. One is not, and it is not the one people worry about.</p>
+<p>Receiving a message is easy. Understanding what someone wants is easy, and that is the part that felt like magic two years ago. Writing down what happened is easy. Replying is easy.</p>
+<p>Looking it up is where these die.</p>
+<p>A commenter on the same thread said it plainly. Those bots look deceptively simple on the surface. The real fight is connecting that look-it-up-book-it-log-it flow reliably to whatever legacy systems or scattered software actually hold the data. Data integrity there, in their words, is brutal.</p>
+<p>That is the honest part. Your agent has to know whether Tuesday at 3 is genuinely free, which means reaching into whatever holds the truth about Tuesday at 3. For a lot of small businesses that is a practice management tool from 2011 with no way in, or a paper book behind the counter, or three calendars that quietly disagree with each other.</p>
+<p>If your answer is that your booking system has no way for software to talk to it, you did not hit a snag. You found the project. Sort that out before you write a word of agent instructions, because everything else is trim on top of that one question.</p>
+<p>The good news is the shape survives a low-tech answer. Plenty of working builds skip integration completely. They take the request, check a calendar the owner keeps deliberately simple, and hand a human one line to confirm. You still get most of the value. The customer got a real answer in thirty seconds at nine at night instead of a voicemail beep.</p>
+<h2>The Business Angle</h2>
+<p><strong>What you are paying now.</strong> A part-time front desk person runs $2,000 to $3,500 a month depending on where you are. An answering service is cheaper, roughly $200 to $500, but it mostly takes messages instead of booking anything. The work still lands on your desk in the morning. Neither one covers evenings and weekends without the price climbing.</p>
+<p><strong>What the missed ones cost.</strong> This number matters more and gets counted less. For most service businesses an unanswered call after hours is not a delayed customer. It is a lost one. The next thing that person does is search again and call whoever picks up. If your average job is worth $400 and six of those slip past you in a month, the math gets uncomfortable fast.</p>
+<p><strong>What this costs.</strong> Twenty to fifty dollars a month, on top of the calendar and the phone number you already pay for.</p>
+<p><strong>The catch that decides whether any of that is real.</strong> All those savings assume the thing works. An intake agent that books the wrong slot did not save you a receptionist, it cost you a customer and removed the person who would have caught it. Nothing announces the failure, so the damage stacks up before you hear about it.</p>
+<p>So the daily digest is not admin bolted onto the build. It is the part that turns the build into money. Ten minutes a day for two weeks, then a glance a day after that, and you will know inside a week whether you bought a front desk or a slow leak.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Anyone whose front door is a message. Which is nearly everyone.</p>
+<p><strong>Dental, medical, physio, chiro, veterinary.</strong> Booking, confirming, rescheduling, and pulling the urgent cases out of the pile.</p>
+<p><strong>Restaurants and bars.</strong> Reservations, large party requests, and the same six questions about parking and dietary options.</p>
+<p><strong>Salons, barbers, spas, tattoo studios.</strong> Booking by service and by practitioner. That is the vet triage build in nicer clothes.</p>
+<p><strong>Trades and home services.</strong> Plumbers, electricians, HVAC, roofers, pest control. Emergency versus scheduled is the whole triage. This is the most valuable version of the build, because the emergency call is the one that pays.</p>
+<p><strong>Law firms, accountants, consultants.</strong> Qualifying an inquiry before anyone bills an hour against a bad fit.</p>
+<p><strong>Gyms, studios, driving instructors, tutors.</strong> Slot and class booking with a waitlist behind it.</p>
+<p><strong>Property managers and self-storage.</strong> Maintenance requests, viewings, and access questions. Almost all of it arrives after hours.</p>
+<p><strong>Auto shops.</strong> Estimates, drop-off times, and the endless is my car ready yet.</p>
+<p>If your business answers the same twenty questions and fills the same calendar every week, you are in scope. The trade on the sign out front is the last thing that matters about your build.</p>
+<h2>How Hard Is It</h2>
+<p>A weekend to build. Two weeks of paying attention after. Put the second one in your calendar.</p>
+<p>The building is not the hard part anymore. An agent will write most of it from a clear description. Give it your services, your hours, your prices, the questions people actually ask, and some way to see your calendar. You will have something answering messages by Sunday evening.</p>
+<p>Then do the unglamorous thing. Every conversation gets written down as plain sentences. What the person wanted. What the agent decided. What it booked. Where it hesitated. Send yourself that list once a day and read all of it for two weeks. Yes, all of it.</p>
+<p>You are not watching for crashes. Crashes announce themselves. You are watching for the booking that went in an hour off, the address transcribed wrong, the customer who asked something slightly outside the script and got a confident answer that was wrong. Every one you catch in week one is a customer you keep and never find out you almost lost.</p>
+<p><strong>Cost:</strong> roughly $20 to $50 a month. If you already pay for a booking tool and a business line, the agent layer is the only new line on the bill.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>It fails quietly, which is why it needs a reader.</strong> Nothing here breaks in a way you will notice. It does the wrong thing confidently and moves to the next message. Assume that is happening and go looking. Waiting for an error message means waiting for a complaint.</p>
+<p><strong>Settle the availability question before anything else.</strong> If the agent cannot reliably find out whether a slot is free, do not let it promise slots. Have it take the request and hand you one line to confirm. That version is still worth building, and it cannot double-book you on a Saturday.</p>
+<p><strong>Give it permission to not know.</strong> The most useful sentence in your instructions is the one telling it what to do when it is unsure. Stop, say a human will follow up shortly, ping you. An agent that has to produce an answer will produce one.</p>
+<p><strong>Escalation needs a name on it.</strong> Pinging the business pings nobody. Send it to one person's phone with the whole conversation attached, not a notification saying something needs attention.</p>
+<p><strong>Log the reasoning, not just the outcome.</strong> Booked Tuesday 3pm tells you nothing once you know Tuesday 3pm was wrong. Customer asked for an afternoon this week, offered Tue 3pm and Thu 4pm, they took Tue. That shows you where it went off.</p>
+<p><strong>Start with one channel.</strong> Whichever one your customers already use. Adding more later is easy. Doubling your surface area on day one just means twice as many transcripts to read while you are still learning what wrong looks like.</p>
+<p><strong>Read the write-up from the trade least like yours.</strong> When you get stuck, go find how the plumber solved it. Their triage logic answers your vet clinic problem. It was the same problem the whole time.</p>
+<p><strong>Put a reminder in your calendar for six months out.</strong> The reason this playbook exists is that nobody knows how many of these are still alive. Book yourself half an hour next spring to read a real week of transcripts. That one reminder is most of what separates the builds that survive from the ones nobody mentions again.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/ai-front-desk/">The Four-Piece AI Front Desk Every SMB Should Have Running by Friday</a></strong>: The full front-desk stack this pattern describes, laid out as a build rather than a shape.</li>
+<li><strong><a href="/playbooks/whatsapp-appointment-faq-agent/">Put an Agent on Your WhatsApp to Book Appointments and Answer the Same 20 Questions</a></strong>: The single-channel version, and the fastest way to test the shape on your own customers.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by AykutSek on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/automation/comments/1v4kl9z/i_went_through_the_27_mostupvoted_automation/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

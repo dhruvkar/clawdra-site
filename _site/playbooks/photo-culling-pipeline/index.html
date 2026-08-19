@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culling 3,000 Wedding Photos Without Paying to Look at Them All — ClawDrop</title>
+  <meta name="description" content="His daughter&#39;s photographer delivered 3,000 photos. An agent built him a five-stage pipeline that clears out the duplicates and the blurry frames with free math, so only a few hundred images ever reach a paid model.">
+  <meta property="og:title" content="Culling 3,000 Wedding Photos Without Paying to Look at Them All — ClawDrop">
+  <meta property="og:description" content="His daughter&#39;s photographer delivered 3,000 photos. An agent built him a five-stage pipeline that clears out the duplicates and the blurry frames with free math, so only a few hundred images ever reach a paid model.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/photo-culling-pipeline/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Culling 3,000 Wedding Photos Without Paying to Look at Them All — ClawDrop">
+  <meta name="twitter:description" content="His daughter&#39;s photographer delivered 3,000 photos. An agent built him a five-stage pipeline that clears out the duplicates and the blurry frames with free math, so only a few hundred images ever reach a paid model.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/photo-culling-pipeline/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 28, 2026</div>
+    <h1>Culling 3,000 Wedding Photos Without Paying to Look at Them All</h1>
+    <p class="post-description">His daughter&#39;s photographer delivered 3,000 photos. An agent built him a five-stage pipeline that clears out the duplicates and the blurry frames with free math, so only a few hundred images ever reach a paid model.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>Pennies to a few dollars per batch, because only a few hundred images ever reach a paid model</strong></span>
+      <span class="meta-badge">⏱ <strong>A weekend, and it runs on every batch after that</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/clrudolphi/" target="_blank">clrudolphi</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-hermes"><strong>Hermes</strong></a>: the agent that designed and built the whole pipeline from a conversation</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: alternative agent runtime for the same build</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: another alternative that does the same jobs</li>
+<li><a href="#aff-anthropic"><strong>Anthropic</strong></a>: the Claude models that make the final keep-or-cull judgment, cheap one first</li>
+<li><a href="#aff-docker"><strong>Docker</strong></a>: keeps the whole thing in a container so nothing gets permanently installed on your computer</li>
+<li><a href="#aff-python"><strong>Python</strong></a>: what the pipeline is written in, and it serves the review page too</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A machine that takes a folder of a few thousand photos and hands you back the couple hundred worth looking at, grouped by moment, with a simple web page for making the final calls.</p>
+<p>The more useful thing you are building is a cost pattern that applies well beyond photos.</p>
+<p>It comes down to the order of operations. Instead of showing every photo to an expensive AI, you run a gauntlet of filters that get smarter and pricier as they go. Cheap math clears out the obvious duplicates, groups what survives by scene, and drops the blurry and badly exposed frames. Only what makes it through all of that gets shown to a model that charges you per look.</p>
+<p>Out of 3,000 photos in the original, the paid AI was only asked about a few hundred. That is roughly ninety percent of the bill eliminated before it was ever incurred, without giving up any quality on the decisions that actually needed judgment.</p>
+<p>If you take one thing from this playbook, take the order: cheap filters first, expensive intelligence last.</p>
+<h2>The Story</h2>
+<p>This came out of a Reddit thread where people were sharing what they use their agents for. A user going by clrudolphi had a very specific and very relatable problem.</p>
+<p>His daughter got married. The wedding photographer delivered about 3,000 photos.</p>
+<p>If you have ever been on the receiving end of a professional photo dump, you know how little it feels like a gift and how much it feels like homework. Somewhere in those 3,000 frames are the eighty pictures that belong in the album. The rest are burst-mode duplicates, shots where someone blinked, shots where the focus missed, the same table from four angles, and forty near-identical frames of the first dance.</p>
+<p>Nobody wants to look at 3,000 photos, so nobody does, and the album never gets made, and the whole thing sits on a drive forever.</p>
+<p>He asked his agent to solve it. Two constraints, both of which shaped the entire design: keep the AI costs down, and leave no permanent mess on his Windows workstation.</p>
+<p>Those constraints are why the build is worth studying. Anybody can throw 3,000 images at an AI and get an answer back. He got the same answer for a fraction of the money.</p>
+<h2>The Five Stages</h2>
+<p>The gauntlet runs in five stages, translated here out of the technical terms.</p>
+<p><strong>Stage one: kill the obvious duplicates. Free.</strong> When a photographer holds down the shutter, you get eight nearly identical frames. The pipeline shrinks each image down to a tiny thumbnail and generates a kind of fingerprint from it. Images with nearly identical fingerprints are the same moment. No AI involved at all, just a similarity score. This alone removes a huge share of a wedding gallery.</p>
+<p><strong>Stage two: group what is left by scene. Nearly free.</strong> Now it needs to understand what each photo is of, so it can put the ceremony shots together, the reception shots together, the getting-ready shots together. It uses an image-understanding model that turns each picture into a set of numbers describing its content, then clusters photos whose numbers are close. No chatbot is involved and nothing gets described in words. This is a small, fast, single-purpose model that runs on your own machine and costs essentially nothing.</p>
+<p><strong>Stage three: throw out the technically bad ones. Free.</strong> Classic image analysis, the kind that has existed for twenty years and involves no machine learning whatsoever. Is it blurry? Is it badly exposed? Is it visually empty? Out. His own note on this stage is that there is no model here at all, just math on pixels.</p>
+<p><strong>Stage four: now, finally, ask the AI. This is the only part that costs money.</strong> Whatever made it through the first three stages gets shown to a vision-capable Claude model, which actually looks at the photo and makes the keep-or-cull call, and explains why. And even here he was careful. It runs the cheap fast model first, and only escalates to the more expensive one when the cheap model is not confident.</p>
+<p><strong>Stage five: you make the final call.</strong> The pipeline generates a web page where he flips through the survivors, grouped by scene, and picks what goes in the album.</p>
+<h2>The Review Page Is a Single File</h2>
+<p>The review interface is one self-contained HTML file. Plain JavaScript, hand-written styling, no frameworks, no build step, nothing to install. Your keep and cull decisions live in the page itself and are saved in your browser, so you can close it and come back. A tiny built-in web server serves it locally.</p>
+<p>An agency would have built this as a web app with a backend, a database, and a login screen, and taken three weeks doing it. His version is one file that does the job, and when the wedding is over he deletes it.</p>
+<p>When you ask an agent to build you a tool, say the words &quot;single self-contained HTML file, no frameworks, no build step.&quot; You will get something you can actually use and understand, today, instead of a small software project you now maintain.</p>
+<h2>The Business Angle</h2>
+<p>Two ways to count the money here, and the second is the one to take with you.</p>
+<p><strong>The obvious one.</strong> Photo culling is a real service that real photographers pay for. Outsourced culling runs anywhere from a few cents per image to $40 an hour, and a 3,000-image wedding is commonly a $150 to $400 job. Wedding photographers shoot dozens of weddings a year. If you are a photographer, that is thousands of dollars a year, or, more likely, that is you doing it yourself at midnight because you cannot bear to pay for it.</p>
+<p>For the rest of us there is no bill, just the album that never got made.</p>
+<p><strong>The one to take with you.</strong> Look at the ratio again. Three thousand images went in, a few hundred reached a paid model. He designed roughly ninety percent of his AI bill out of existence before running a single expensive call, and the quality of the decisions did not suffer, because everything he filtered out was junk that never needed judgment.</p>
+<p>Most people wire an expensive model into the front of their process, get a surprising bill, and conclude that AI is too expensive for their business. Usually the problem is that they asked a very expensive brain to do work cheap math could have handled first.</p>
+<p>Sorting mail, screening resumes, reviewing invoices, triaging support tickets, grading leads, checking documents. Every one of these has cheap deterministic filters that can eliminate most of the pile before anything intelligent needs to look at it.</p>
+<h2>Who Should Steal This Idea</h2>
+<p><strong>Wedding and event photographers.</strong> The obvious one. This is your culling workflow, and it groups by scene while it is at it.</p>
+<p><strong>Real estate photographers and videographers.</strong> Dozens of shots per property, most of them redundant, on a deadline.</p>
+<p><strong>Anyone running product photography.</strong> Hundreds of shots per product, you need the six good ones.</p>
+<p><strong>Insurance adjusters, contractors, and inspectors.</strong> You come back from a site with two hundred photos of a roof. You need the twelve that show damage, grouped by area. That is exactly this pipeline with different instructions in the last stage.</p>
+<p><strong>Anyone with a security camera archive.</strong> Same structure. Cheap motion and quality filters first, AI only on the frames that survive.</p>
+<p><strong>Anyone about to point an AI at a big pile of anything.</strong> The photos are incidental here. The gauntlet is the part to copy.</p>
+<h2>How Hard Is It</h2>
+<p>Weekend project, and this is a very good use of an agent.</p>
+<p>You are not going to hand-build a five-stage image pipeline. You are going to describe the problem and the two constraints, exactly as he did: keep the AI costs down, and do not permanently install anything on my computer. A capable agent will propose something like this structure on its own, because it is the sensible answer.</p>
+<p>The instruction worth stealing verbatim is the one about cost. Say &quot;sort my photos&quot; and you get a script that sends all 3,000 to a paid model. Say &quot;sort my photos and keep the AI costs as low as possible&quot; and you get the gauntlet. One sentence produced the entire design.</p>
+<p>Everything runs in a container, so when you are done, it all disappears cleanly.</p>
+<p><strong>Cost:</strong> pennies to a few dollars per batch. The first three stages cost nothing but electricity. Only the few hundred survivors reach a paid model, and most of those are answered by the cheapest one.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>State your cost constraint out loud, up front.</strong> &quot;Minimize what I spend on AI calls&quot; is not a detail to mention later. Say it first and you get a completely different design back.</p>
+<p><strong>Say &quot;no lasting installation on my machine.&quot;</strong> His second constraint got him a containerized build that cleans up after itself. Without it you end up with half-installed Python libraries you will be confused by in six months.</p>
+<p><strong>Ask for the tiers.</strong> Cheap model first, escalate to the expensive one only when the cheap one is unsure. That pattern applies to almost everything and most people never ask for it.</p>
+<p><strong>Ask it to explain each call.</strong> His pipeline has the model give a reason for keeping or culling. That is what lets you spot-check whether it understands your taste, rather than trusting a silent verdict.</p>
+<p><strong>Never let it delete anything.</strong> The pipeline should move, tag, or list. Not delete. You want to be able to disagree with it a week later.</p>
+<p><strong>Group by moment, not just by quality.</strong> The scene clustering is what makes the review page usable. Twenty good photos scattered randomly is still work. Twenty good photos sorted into ceremony, toasts, and dancing is a decision you can make in five minutes.</p>
+<p><strong>Tune the aggressiveness on one folder first.</strong> Run it on 300 photos from one event and look at what it threw out before you point it at your whole archive. The blur threshold in particular is a matter of taste, and an artsy shallow-focus shot can look like a mistake to a math filter.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/ai-budget-cap/">He Spent $1,263 on AI in One Month. Then He Capped It.</a></strong>: The other half of cost control. This playbook keeps the bill from happening, that one stops it once it has.</li>
+<li><strong><a href="/playbooks/photo-to-shopify-listing/">Snap a Photo, Get a Live Shopify Listing in Minutes</a></strong>: Pointing AI at your images to make money instead of to sort them.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by clrudolphi on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

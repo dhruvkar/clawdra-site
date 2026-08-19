@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Camera That Tells You Whether It Was a Delivery or a Theft — ClawDrop</title>
+  <meta name="description" content="An agent wrote him a script that saves a 60-second clip whenever his camera sees motion, shows it to a model that can watch video, and texts him a plain verdict instead of another motion alert.">
+  <meta property="og:title" content="A Camera That Tells You Whether It Was a Delivery or a Theft — ClawDrop">
+  <meta property="og:description" content="An agent wrote him a script that saves a 60-second clip whenever his camera sees motion, shows it to a model that can watch video, and texts him a plain verdict instead of another motion alert.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/camera-event-classifier/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="A Camera That Tells You Whether It Was a Delivery or a Theft — ClawDrop">
+  <meta name="twitter:description" content="An agent wrote him a script that saves a 60-second clip whenever his camera sees motion, shows it to a model that can watch video, and texts him a plain verdict instead of another motion alert.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/camera-event-classifier/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 28, 2026</div>
+    <h1>A Camera That Tells You Whether It Was a Delivery or a Theft</h1>
+    <p class="post-description">An agent wrote him a script that saves a 60-second clip whenever his camera sees motion, shows it to a model that can watch video, and texts him a plain verdict instead of another motion alert.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner-to-intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>~$10-30/mo (pennies per clip, and only clips with motion get looked at)</strong></span>
+      <span class="meta-badge">⏱ <strong>An afternoon</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/XaocuHKa/" target="_blank">XaocuHKa</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-hermes"><strong>Hermes</strong></a>: the agent that wrote the script and runs the loop</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: alternative agent runtime for the same build</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: another alternative that does the same jobs</li>
+<li><a href="#aff-ring"><strong>Ring</strong></a>: the camera in the original build, though any camera that exposes motion events works</li>
+<li><a href="#aff-gemini"><strong>Gemini</strong></a>: a model that can watch actual video, not just still frames</li>
+<li><a href="#aff-telegram"><strong>Telegram</strong></a>: where the plain-English verdict lands on your phone</li>
+<li><a href="#aff-python"><strong>Python</strong></a>: what the script is written in</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A camera that tells you what happened, rather than one that tells you something happened.</p>
+<p>The loop runs in four steps. Your camera detects motion, a script saves a sixty-second clip, and that clip goes to an AI model that can watch video, with a question attached: what is going on here, and should I care? The answer arrives on your phone as a sentence.</p>
+<p>So instead of &quot;motion detected at the front door,&quot; you get &quot;UPS delivery,&quot; or &quot;USPS pickup,&quot; or &quot;possible theft.&quot; That difference is what separates a camera you have muted from one you still respond to.</p>
+<h2>The Story</h2>
+<p>This one is a short Reddit comment, and the description is a lot shorter than the idea inside it.</p>
+<p>A user going by XaocuHKa was in a thread about what people run their agents for. They said their agent wrote a Python script that monitors their Ring camera for motion, saves a sixty-second clip, passes it to a different model that can work with video, evaluates the risk of theft and identifies deliveries, and notifies them on Telegram. They get a message that says &quot;UPS delivery&quot; or &quot;USPS pickup&quot; or a possible theft warning.</p>
+<p>That is the whole post. It matters more than its length suggests.</p>
+<p>Everybody with a camera has the same experience. You install it, you turn on motion alerts, and for about four days you check every single one. Then you realize that ninety percent of them are a car going past, a cat, a shadow at four in the afternoon, or the wind moving a plant. So you turn the alerts off, or you leave them on and stop looking, which is worse, because now you believe you are covered when you are not.</p>
+<p>Camera companies know this, which is why &quot;smart alerts&quot; that can distinguish a person from a car are what they charge a monthly subscription for. Even those top out at telling you a person was there. They cannot tell you whether that person dropped off a box or picked up one that was not theirs.</p>
+<p>Closing the gap between &quot;a person was at your door&quot; and &quot;someone just took your package&quot; is the whole job, and it now costs a sixty-second clip and one well-worded question.</p>
+<h2>The Detail That Makes It Work</h2>
+<p>One technical choice in that comment is easy to skim past, and it is the reason the whole thing works. The clip goes to a model that can process video rather than a still image.</p>
+<p>This matters enormously. A photo from a doorbell camera shows you a person standing near a package. That is genuinely ambiguous. Are they setting it down or picking it up? A still frame cannot tell you. A human looking at that photo cannot always tell you.</p>
+<p>Video can. Direction of travel, whether their hands were full arriving and empty leaving or the reverse, whether they came up the path or in from the side, whether they looked around first, whether a marked van is parked in the corner of the shot. All of that lives in the motion, and none of it survives in a single frame.</p>
+<p>So when you build this, give the model the actual clip and let it watch, rather than letting it summarize a snapshot.</p>
+<p>The other quiet efficiency is that this only runs when the camera reports motion. Nothing analyzes a 24-hour stream, so most of the day costs nothing and you only pay when something moved. That filtering is why the monthly cost lands where it does.</p>
+<h2>The Business Angle</h2>
+<p>Retail and storefront owners, this section is for you.</p>
+<p><strong>What you are paying now.</strong> Professional monitoring runs $30 to $60 a month, and what you get is someone calling after an alarm has already tripped. Cloud video plans with smart detection are typically $10 to $20 a month per location, where &quot;smart&quot; means it can tell a person from a car. Video analytics that actually classifies behavior is a commercial product with commercial pricing, commonly $50 to $100 per camera per month, sold to chains rather than to the guy with one shop.</p>
+<p>This build gets you behavior classification at the cost of the clips you analyze. Which is pennies, because only motion events get looked at.</p>
+<p><strong>What it actually saves you.</strong> Package theft is the obvious one, and for a small retail or e-commerce operation a few stolen deliveries a year is real money. But theft is probably not where most of the value sits.</p>
+<p>The rest of it is knowing your delivery arrived without waiting on a tracking update, knowing somebody is at your back door at 11pm on a Sunday, and knowing a customer has been standing outside your locked door for five minutes while you are in the back. Plus you end up with a dated, described log of who came and went, instead of four thousand video files nobody will ever open.</p>
+<p><strong>The number nobody counts is attention.</strong> Forty useless notifications a day cost you more than money, because they train you to ignore your own security system. This build takes those forty and leaves you the two that matter. A muted alert is worth exactly nothing, so anything that gets you back to trusting the notifications is worth more than the subscription it replaces.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Anyone with a camera and a question it cannot currently answer. The camera setup is the same everywhere. The question you ask it is specific to your business.</p>
+<p><strong>Retail storefronts.</strong> Deliveries arriving, customers waiting at a locked door, loitering after hours, someone at the back entrance.</p>
+<p><strong>Restaurants and bars.</strong> Back door propped open, deliveries dropped where they should not be, dumpster being used by somebody else's business, which is a real and expensive problem.</p>
+<p><strong>Self-storage and small warehouses.</strong> After-hours access, vehicles that do not belong, unit doors left open.</p>
+<p><strong>Car lots.</strong> Overnight movement on the lot. A lot camera that can say &quot;someone is walking the rows at 2am&quot; is a different product from one that says &quot;motion.&quot;</p>
+<p><strong>Construction sites.</strong> Tool and material theft is endemic, and sites are empty and unmonitored precisely when it happens.</p>
+<p><strong>Contractors and trades with a yard.</strong> Same story. Trailers and equipment sitting overnight.</p>
+<p><strong>Property managers.</strong> Illegal dumping, unauthorized access, verifying a vendor actually showed up when they invoiced you for showing up.</p>
+<p><strong>Farms and rural properties.</strong> Gate access, livestock, equipment, and typically no monitoring service worth buying at that distance.</p>
+<p>The pattern is always the same. You have footage and you do not have attention, and this converts one into the other.</p>
+<h2>How Hard Is It</h2>
+<p>An afternoon, and it is a genuinely good first build if you are new to this.</p>
+<p>The pieces are small. Something that notices your camera reported motion, something that grabs the clip, one call to a model that can watch video, and a message to your phone. Any capable agent will write this for you from a description.</p>
+<p>The part that needs your thought is the question you ask the model, because that is your entire product. &quot;Describe what happened&quot; gives you a paragraph you will not read. What you want is a short verdict from a fixed set of options you defined, plus a confidence, plus one line of explanation. Tell it exactly which outcomes you care about: delivery arriving, package being removed, customer waiting, staff arriving, vehicle in the lot, nothing worth mentioning.</p>
+<p>The last item on that list is the important one. Give it explicit permission to conclude that nothing happened, and to stay quiet when that is the answer. A system that has to produce an alert will produce alerts, and you will be back where you started inside a week.</p>
+<p><strong>Cost:</strong> roughly $10 to $30 a month depending on how busy your camera is. Only motion events get analyzed, so a quiet back door costs almost nothing and a busy sidewalk costs more. If your camera is on a street, restrict the detection zone before you turn this on.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Send video, not a still.</strong> A single frame cannot tell you whether a package is arriving or leaving. The motion can, and that distinction is most of what you are paying for.</p>
+<p><strong>Define your categories up front, and include &quot;nothing.&quot;</strong> A short list of specific outcomes plus an explicit silent option. Open-ended descriptions produce noise, which is the exact problem you are solving.</p>
+<p><strong>Fix your motion zones first.</strong> If your camera currently fires on passing cars, you are about to pay to analyze passing cars. Tighten the detection area before you connect anything, not after.</p>
+<p><strong>Ask for a confidence level and act on it.</strong> High confidence goes straight to your phone. Low confidence goes into a quiet log you glance at once a day. That single split is what keeps the alerts trustworthy.</p>
+<p><strong>Keep the clip and the verdict together.</strong> When you get &quot;possible theft,&quot; you want to tap it and watch the sixty seconds immediately. An alert you cannot verify in one tap is an alert that makes you anxious rather than informed.</p>
+<p><strong>Be careful what you automate on top of it.</strong> Notifying you is the right output. Do not wire this into anything that calls the police, triggers an alarm, or contacts a person. It will be wrong sometimes, and the cost of being wrong in that direction is severe.</p>
+<p><strong>Check your local rules on recording.</strong> Cameras pointed at public sidewalks, shared spaces, or anywhere with employees have rules attached depending on where you are, and analyzing footage does not change your obligations. Worth ten minutes before you scale this to a storefront.</p>
+<p><strong>Start on one camera for two weeks.</strong> Read every verdict during that period and see where it is wrong. Your specific doorway, lighting, and traffic will need the question tuned, and two weeks of watching tells you exactly how.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/esp32-smart-baby-monitor/">His AI-Built Baby Monitor Knows Babbling From Crying. The Whole Family Sleeps Now.</a></strong>: The same instinct applied to sound instead of video, turning a raw sensor into a useful answer.</li>
+<li><strong><a href="/playbooks/greenhouse-ai-with-safety-rails/">Let an AI Run Your Equipment Without Letting It Break Anything</a></strong>: What to do once an agent is watching your physical space and you start wanting it to act.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by XaocuHKa on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

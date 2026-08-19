@@ -6,7 +6,6 @@ date: 2026-04-15
 difficulty: Intermediate
 cost: "$10-30/month (Typefully + API costs)"
 timeToSetup: "A Saturday afternoon"
-originalSource: "https://clawdrop.org"
 originalAuthor: "Clawdrop"
 issueNumber: 9
 permalink: /playbooks/daily-content-machine/

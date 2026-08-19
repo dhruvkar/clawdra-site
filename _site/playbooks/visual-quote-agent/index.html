@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let Customers Design Their Own Order and Get a Price — ClawDrop</title>
+  <meta name="description" content="A one-person balloon shop built an AI agent that walks each customer through a custom design, shows them a picture, and quotes a price. Owner just approves.">
+  <meta property="og:title" content="Let Customers Design Their Own Order and Get a Price — ClawDrop">
+  <meta property="og:description" content="A one-person balloon shop built an AI agent that walks each customer through a custom design, shows them a picture, and quotes a price. Owner just approves.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/visual-quote-agent/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Let Customers Design Their Own Order and Get a Price — ClawDrop">
+  <meta name="twitter:description" content="A one-person balloon shop built an AI agent that walks each customer through a custom design, shows them a picture, and quotes a price. Owner just approves.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/visual-quote-agent/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 20, 2026</div>
+    <h1>Let Customers Design Their Own Order and Get a Price</h1>
+    <p class="post-description">A one-person balloon shop built an AI agent that walks each customer through a custom design, shows them a picture, and quotes a price. Owner just approves.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner-to-intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>~$20-40/mo (agent hosting plus AI image costs, pennies per picture)</strong></span>
+      <span class="meta-badge">⏱ <strong>A weekend</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/jacobgc75/" target="_blank">jacobgc75</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/automation/comments/1us8njs/how_a_oneperson_balloon_store_automated_its/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent runtime that runs the conversation, does the math, and emails you the summary</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: alternative agent harness for the same build</li>
+<li><a href="#aff-anthropic"><strong>Anthropic</strong></a>: the model doing the reasoning behind the conversation and the price estimate</li>
+<li><a href="#aff-nano-banana"><strong>Nano Banana</strong></a>: the AI image tool that draws a picture of the custom order so the customer can see it before buying</li>
+<li><a href="#aff-gemini"><strong>Gemini</strong></a>: Google's image model, an alternative for generating the preview picture</li>
+<li><a href="#aff-gmail"><strong>Gmail</strong></a>: where the clean order summary lands for you to review</li>
+<li><a href="#aff-telegram"><strong>Telegram</strong></a>: optional, get pinged on your phone the moment a new quote comes in</li>
+<li><a href="#aff-stripe"><strong>Stripe</strong></a>: optional, collect a deposit once you approve the price</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A quoting assistant that sits on your website and does the annoying first hour of every custom order for you. A customer shows up wanting something specific. The assistant asks them what they want, the colors, the sizes, the style, how many, the event date, and where it's going. Then it does something most quoting tools cannot do. It draws them a picture of what they described, so they can see the arrangement before they ever pay a cent.</p>
+<p>While that is happening, it is quietly working out a price. It looks at what you charged for similar jobs in the past and lands on a realistic number. Then it packages the whole thing up, the design details, the date, the customer's contact info, and the estimated price, and sends it to you in one clean email.</p>
+<p>You still make the final call. You read the summary, adjust the price if you want, and reach out to the customer. But instead of ten back-and-forth messages just to figure out what they want, you get a finished request with a number already attached. You go from &quot;what are they even asking for&quot; to &quot;here's your quote, want to book?&quot; in a fraction of the time.</p>
+<p>This one comes from a one-person balloon store. But the builder is blunt about it: the same thing works for florists, cake decorators, event decorators, and any small shop where every single order is different and quoting eats your day.</p>
+<h2>The Story</h2>
+<p>Someone posted this on Reddit under the handle jacobgc75. The setup was a woman running a balloon store completely on her own. She did the designing, the building, the delivery, the invoicing, all of it.</p>
+<p>Her biggest time sink was not the balloons. It was the quoting.</p>
+<p>Think about what she was selling. No two balloon arrangements are priced the same. A birthday arch in pastel pinks is a different job from a corporate event backdrop in company colors. The price moves with the colors, the sizes, the style, how many balloons, where it is going, and what date the event is. Every single inquiry meant a long back-and-forth conversation just to nail down what the customer actually wanted.</p>
+<p>And here is the part that stings. Half of those conversations went nowhere. She would spend twenty minutes messaging back and forth, pulling details out of someone, and then find out they were just price shopping, or they wanted it for tomorrow, or their budget was a quarter of what the job costs. She was doing unpaid sales work before she even knew if the person was serious.</p>
+<p>So she built an agent to do that first conversation for her.</p>
+<h2>What the Agent Actually Does</h2>
+<p>The whole thing runs in four steps. None of them are complicated once you see them laid out.</p>
+<p><strong>Step one, it walks the customer through the design.</strong> The agent asks the questions she used to ask by hand. What is the occasion? What colors? How big? What style, classic garland, an organic cluster, a full arch? How many? The customer answers in plain language, like they are texting a friend.</p>
+<p><strong>Step two, it shows them what it will look like.</strong> This is the trick that makes the whole thing feel like magic. Once the agent understands the design, it uses an AI image tool to draw a picture of that exact arrangement. The customer types &quot;sage green and cream balloon arch for a garden wedding&quot; and a few seconds later they are looking at a picture of it. Not a stock photo. A picture generated for their specific order. They can look at it and say &quot;yes, that's it&quot; or &quot;actually make it bigger and add gold.&quot;</p>
+<p>That single feature does two things. It excites the customer, because seeing your idea come to life is fun. And it kills confusion, because now you both know exactly what was agreed to. No &quot;that's not what I pictured&quot; three days before the event.</p>
+<p><strong>Step three, it works out the price.</strong> Behind the scenes, the agent looks at what she charged for past jobs like this one. Bigger arch, more balloons, premium colors, tight deadline, further delivery, the price goes up accordingly. It lands on a realistic estimate based on her actual history, not a made-up number.</p>
+<p><strong>Step four, it hands you a finished request.</strong> The agent collects the event date, the design details, the customer's name and contact info, and the quoted price, and sends the owner a clean summary. One email. Everything in one place. She reads it, and she is already ninety percent of the way to a sent quote.</p>
+<p>There is a live demo you can try if you want to see the flow yourself. Play with it and pay attention to how it feels as the customer, because that experience is the actual product.</p>
+<h2>The Human Is Still in the Loop</h2>
+<p>Read this part carefully, because it is what separates a good build from a reckless one.</p>
+<p>The agent does not send the final price to the customer and take the order. It sends the price to the owner. She reviews it. If the estimate is off, she fixes it. If the date does not work, she says so. If it is a great job at a fair price, she confirms it and books it.</p>
+<p>The agent is not replacing her judgment. It is replacing the hour of typing that used to come before her judgment. It turns a vague &quot;hi do you do balloon arches&quot; into a structured request with a design, a date, and a dollar figure attached. That is the whole point. She responds faster, and she never has to ask the same five questions again.</p>
+<p>If you take one idea from this playbook, take that one. The agent handles the intake. You handle the decision. That split is what makes customers trust it and what keeps you in control of your own pricing.</p>
+<h2>The Business Angle</h2>
+<p>Here is the math on what this replaces.</p>
+<p>If you are a solo shop, quoting is not a line item you pay for. It is worse. It is time stolen out of the actual work you get paid for. Say every custom inquiry costs you twenty minutes of back-and-forth, and you get thirty inquiries a week. That is ten hours a week, gone, before you have made a single dollar. Ten hours you could spend building orders, delivering them, or having a life.</p>
+<p>And a good chunk of those inquiries never convert. So you are not even losing ten hours to paying customers. You are losing a lot of it to tire-kickers who were never going to book.</p>
+<p>The agent flips that. The customer does the describing. The agent does the drawing and the pricing. The unserious ones drop off on their own once they see a real number, before they ever reach you. The serious ones arrive on your desk pre-qualified, with a picture and a price. You spend your time on people who are actually ready to buy.</p>
+<p>For a shop where the owner is also the salesperson, the builder, and the delivery driver, buying back ten hours a week is not a nice-to-have. It is the difference between taking more orders and turning them away because you are drowning in admin.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>The builder said it plainly, and he is right. This works anywhere the product is custom and the quoting is the bottleneck.</p>
+<p><strong>Florists.</strong> Every arrangement is different. Colors, flowers in season, size, vase or hand-tied, event or sympathy. Same problem, same fix. The customer describes the bouquet, the agent shows them a picture and a price.</p>
+<p><strong>Custom cake decorators.</strong> Tiers, flavors, colors, theme, dietary needs, the date. A visual preview is huge here, because &quot;I want a unicorn cake&quot; means ten different things to ten different people. Let them see it first.</p>
+<p><strong>Event and party decorators.</strong> Backdrops, centerpieces, full-room installs. Lots of variables, lots of back-and-forth, exactly the kind of quoting that eats a solo operator alive.</p>
+<p><strong>Sign and banner shops, custom apparel, gift baskets, anything monogrammed or personalized.</strong> If the answer to &quot;how much is it&quot; is always &quot;well, it depends,&quot; this pattern fits.</p>
+<p>The common thread: the customer wants something unique, they cannot picture it clearly, and you cannot price it until you drag the details out of them. The agent does the dragging and the drawing so you can do the deciding.</p>
+<h2>How Hard Is It</h2>
+<p>This is a weekend build, not a software project.</p>
+<p>You do not need to touch the third-party tool the original was built on. You can build the same thing yourself with an AI agent runtime like OpenClaw or Claude Code. The agent runs the conversation, calls an AI image tool to draw the preview, does the pricing math against your past jobs, and emails you the summary. Those are all things these agents already do.</p>
+<p>The one piece worth planning is the pricing. The agent is only as good as the history you give it. Feed it a simple list of your past jobs, what the customer wanted and what you charged, and it has something real to base estimates on. The more examples, the better the number.</p>
+<p><strong>Cost:</strong> roughly $20 to $40 a month. That is the agent hosting plus the AI image costs, which run pennies per picture. No new employee, no expensive quoting software, no monthly per-seat fee.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Keep yourself in the loop, at least at first.</strong> Do not let the agent send prices straight to customers. Every estimate comes to you for approval until you have watched it get the numbers right dozens of times. This protects your margins and your reputation.</p>
+<p><strong>Feed it your real past jobs.</strong> The pricing is guesswork without your history. Spend an hour writing down your last twenty or thirty custom orders and what each one cost. That single document is what makes the estimates believable.</p>
+<p><strong>Set a floor and a ceiling on price.</strong> Tell the agent your minimum order and roughly where your prices top out. It keeps the estimate from lowballing a big job or scaring off a customer with a wild number when the design is unusual.</p>
+<p><strong>Treat the picture as a preview, not a promise.</strong> The AI image is there to align on the idea, colors, size, vibe. Make it clear to the customer that the final piece is handmade and will vary a little. You want excitement, not a complaint that it was not pixel-perfect.</p>
+<p><strong>Capture the date early.</strong> The event date changes everything. It tells you if the job is even possible, whether it is a rush, and how to price it. Have the agent ask for it up front, not at the end.</p>
+<p><strong>Let the tire-kickers leave.</strong> One of the quiet benefits here is that people who were never going to book will drop off once they see a real price. That is a feature. You want the serious ones landing in your inbox, not everyone.</p>
+<p><strong>Start narrow.</strong> Turn it on for your most common order type first, the one you quote over and over. Get that flawless, then widen it to the weirder custom stuff. A great experience on your bread-and-butter order beats a shaky one on everything.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/hvac-estimate-autopilot/">This HVAC Guy Spent Friday Night Setting Up AI. Now His Estimates Write Themselves.</a></strong>: The same quote-it-for-me idea for trades and field service, where the estimate follows a template instead of a picture.</li>
+<li><strong><a href="/playbooks/photo-to-shopify-listing/">Turn a Photo Into a Shopify Listing</a></strong>: Another retail shortcut. Point AI at your product and let it do the tedious part of getting it in front of buyers.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by jacobgc75 on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/automation/comments/1us8njs/how_a_oneperson_balloon_store_automated_its/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

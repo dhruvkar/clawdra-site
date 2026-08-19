@@ -6,7 +6,8 @@ date: 2026-08-12
 difficulty: Beginner
 cost: "Free if you already pay for Claude and use Google Sheets."
 timeToSetup: "An afternoon, and you only build the part that annoys you"
-originalAuthor: "Dhruv Kar"
+originalSource: "https://news.ycombinator.com/item?id=49134342"
+originalAuthor: "kelvinjps10 (Hacker News)"
 issueNumber: 27
 permalink: /playbooks/software-for-one/
 tags:

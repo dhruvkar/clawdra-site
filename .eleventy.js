@@ -46,6 +46,46 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // Map an original-source URL to a human platform name for attribution
+  eleventyConfig.addFilter("sourceName", (url) => {
+    if (!url) return '';
+    let host = '';
+    try { host = new URL(url).hostname.replace(/^www\./, '').toLowerCase(); }
+    catch (e) { return 'the original post'; }
+    const map = {
+      'youtube.com': 'YouTube',
+      'youtu.be': 'YouTube',
+      'reddit.com': 'Reddit',
+      'old.reddit.com': 'Reddit',
+      'news.ycombinator.com': 'Hacker News',
+      'discord.com': 'Discord',
+      'github.com': 'GitHub',
+      'x.com': 'X',
+      'twitter.com': 'X',
+      'bsky.app': 'Bluesky',
+      'medium.com': 'Medium',
+      'clawhub.ai': 'ClawHub'
+    };
+    if (map[host]) return map[host];
+    if (host.endsWith('.substack.com')) return 'Substack';
+    return host;
+  });
+
+  // " on Reddit" — omitted when originalAuthor already carries the platform, e.g. "hawkph (r/openclaw)"
+  eleventyConfig.addFilter("platformSuffix", function(author, url) {
+    if (!url) return '';
+    const name = eleventyConfig.getFilter("sourceName")(url);
+    if (!name) return '';
+    if (author && /\)\s*$/.test(author)) return '';
+    return ' on ' + name;
+  });
+
+  // "Watch" for video sources, "Read" otherwise
+  eleventyConfig.addFilter("sourceVerb", function(url) {
+    const name = eleventyConfig.getFilter("sourceName")(url);
+    return name === 'YouTube' ? 'Watch' : 'Read';
+  });
+
   // Excerpt filter
   eleventyConfig.addFilter("excerpt", (content) => {
     if (!content) return '';

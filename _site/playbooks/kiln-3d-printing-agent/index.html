@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Describe the Part. Your Printer Prints It. No CAD. — ClawDrop</title>
+  <meta name="description" content="Kiln is an open-source tool that lets an AI agent run your 3D printer end to end. Say what you need in one sentence and it designs, slices, and prints it.">
+  <meta property="og:title" content="Describe the Part. Your Printer Prints It. No CAD. — ClawDrop">
+  <meta property="og:description" content="Kiln is an open-source tool that lets an AI agent run your 3D printer end to end. Say what you need in one sentence and it designs, slices, and prints it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/kiln-3d-printing-agent/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Describe the Part. Your Printer Prints It. No CAD. — ClawDrop">
+  <meta name="twitter:description" content="Kiln is an open-source tool that lets an AI agent run your 3D printer end to end. Say what you need in one sentence and it designs, slices, and prints it.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/kiln-3d-printing-agent/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 20, 2026</div>
+    <h1>Describe the Part. Your Printer Prints It. No CAD.</h1>
+    <p class="post-description">Kiln is an open-source tool that lets an AI agent run your 3D printer end to end. Say what you need in one sentence and it designs, slices, and prints it.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner to Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>Free + open source (you need a 3D printer you already own) + agent API costs</strong></span>
+      <span class="meta-badge">⏱ <strong>An afternoon</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://github.com/codeofaxel" target="_blank">codeofaxel</a><span> on GitHub</span></span>
+      </div>
+      <a href="https://github.com/codeofaxel/Kiln" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-kiln"><strong>Kiln</strong></a>: the open-source connector that lets an AI agent design, check, slice, queue, and monitor a real 3D print end to end</li>
+<li><a href="#aff-claude-desktop"><strong>Claude Desktop</strong></a>: the chat app where you type &quot;I need a 40mm spacer with four M3 holes&quot; and the agent takes it from there</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: the terminal version of the agent that can run the whole Kiln setup from a single prompt</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: alternative agent runtime that speaks the same connector language and drives Kiln the same way</li>
+<li><a href="#aff-bambu-lab"><strong>Bambu Lab</strong></a>: one of the supported printer brands, the one from the real 41-minute demo</li>
+<li><a href="#aff-prusa"><strong>Prusa</strong></a>: another supported printer brand, connected over its own link software</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A 3D printer that takes plain-English orders. You install one free tool, point it at the printer you already own, and connect it to an AI agent. From then on, you describe the part you need in a sentence, and the agent designs it, confirms it will actually print, prepares it for your specific machine, queues it, and watches the camera while it runs.</p>
+<p>The output is a shop where the person who knows what the part should be is no longer forced to also be the person who knows CAD software and slicer software. &quot;I need a 40mm spacer with four M3 holes&quot; goes from idea to the print bed without anyone opening a design program.</p>
+<p>This is the first 3D-printing build we've featured, and it's a clean example of a bigger shift. The skill bottleneck in a print shop was never the printer. It was the two pieces of software between a customer's request and a finished part. Kiln removes that bottleneck.</p>
+<h2>The Story</h2>
+<p>Here's the demo that made us stop and look. The author, who goes by codeofaxel, typed one request to his AI agent: make a coaster with a photo of my dog Ash on it.</p>
+<p>Forty-one minutes later, a finished coaster came off a Bambu A1 printer. Photo of the dog, printed into the surface, done.</p>
+<p>No CAD program. No slicer. No exporting files and dragging them between apps. One sentence in, one physical object out.</p>
+<p>The tool that made this happen is called Kiln. It's free, it's open source, and you install it with a single command: <code>pip install kiln3d</code>. Under the hood it's what's called an MCP server, which is just the connector that lets an AI agent reach out and control a real app or device. In this case, the device is your 3D printer.</p>
+<p>Before Kiln, running a 3D printer meant a chain of skilled steps. You needed someone who could model the part in CAD software like Fusion 360. Then someone who could take that model into a slicer (the software that turns a 3D model into the actual instructions your printer follows, layer by layer). Then someone who knew how to load it onto the right machine, start it, and babysit it for failures. Every one of those steps was a place a job could stall while you waited on the one person who knew that software.</p>
+<p>Kiln hands that entire chain to the AI agent.</p>
+<h2>What It Actually Does</h2>
+<p>Kiln doesn't just &quot;print a file.&quot; It runs the whole job the way a skilled shop tech would, and it does every step for you.</p>
+<p><strong>It designs the part.</strong> You describe what you need in words. The agent generates the actual 3D model. No CAD seat, no design hours.</p>
+<p><strong>It checks the part will print.</strong> Before wasting an hour of machine time and a spool of filament, the agent confirms the design is physically printable on your setup. This is the step beginners skip and pay for in failed prints.</p>
+<p><strong>It slices the part.</strong> It converts the model into the layer-by-layer instructions your specific printer needs. That's the slicer job, handled automatically, tuned to the machine you're sending it to.</p>
+<p><strong>It queues it on the right printer.</strong> If you run more than one machine, it sends the job to the correct one instead of you walking files around on a USB stick.</p>
+<p><strong>It monitors the print.</strong> It watches through the camera while the job runs.</p>
+<p><strong>It recovers from failures.</strong> When something goes wrong mid-print, it can react instead of quietly wasting the next four hours on a spaghetti pile of failed plastic.</p>
+<p>That last two matter more than they sound. Anyone who has run a printer knows the real cost isn't the first hour, it's the failed overnight job you discover at 8am with a full spool wasted.</p>
+<h2>The Printers It Already Speaks To</h2>
+<p>You do not need to buy anything new. Kiln works with the machines makers and shops already own, across the common brands: Bambu Lab, Creality, Prusa, Elegoo, Voron, Sovol, AnkerMake, Artillery, FlashForge, QIDI, RatRig, and SparkX.</p>
+<p>It connects to them through whatever control software you're already using: OctoPrint, Moonraker/Klipper, PrusaLink, or a plain direct USB cable. If you've got a printer running in the back of your shop right now, odds are Kiln can talk to it this afternoon.</p>
+<h2>Setting It Up</h2>
+<p>This is genuinely an afternoon, not a weekend, and not a developer project.</p>
+<p><strong>Step one: install it.</strong> Run <code>pip install kiln3d</code>. That's the whole install.</p>
+<p><strong>Step two: sign in.</strong> Run <code>kiln signin</code> to create a free account.</p>
+<p><strong>Step three: connect it to your agent.</strong> Run <code>kiln install-mcp</code>. This auto-connects Kiln to your AI agent, whether that's Claude Desktop (the chat app), Claude Code (the terminal version), or Codex. You don't hand-edit config files. It wires itself up.</p>
+<p>If you're using Claude Code or Codex, you can skip the manual steps entirely. Those agents can run the whole setup from a single prompt. You tell the agent &quot;install Kiln and connect it to my printer,&quot; and it does the install, the sign-in, and the connection itself. The tool that removes your CAD bottleneck also removes its own setup bottleneck.</p>
+<p>Then you point it at your printer using whichever connection your machine uses, and you're printing from sentences.</p>
+<h2>The Business Angle</h2>
+<p>Here's the money question for anyone running a print shop, a maker business, or a repair shop with a printer in the back: what does this actually replace?</p>
+<p>It replaces the CAD skill bottleneck. Today, when a customer walks in and says &quot;I need a bracket that holds this pipe to that wall,&quot; somebody in your shop has to sit down and model it. Either that's you, spending an hour you could have billed elsewhere, or it's a CAD designer you hired, or it's a freelancer you're paying $40 to $75 an hour to turn simple requests into files. A basic custom part on a freelance site routinely runs $50 to $150 in design time alone, before a gram of plastic is used.</p>
+<p>For simple, well-defined parts, the spacers, brackets, jigs, replacement knobs, custom mounts, gaskets, and fixtures that make up a huge share of real print-shop volume, that design step is now a sentence. &quot;40mm spacer, four M3 holes&quot; doesn't need a designer. It needs a description.</p>
+<p>That changes the math on who you hire and what you outsource. You stop paying per-part design fees on simple jobs. You stop losing a day waiting on your one CAD person to free up. And the person at your front counter who understands the customer's need, but never learned Fusion 360, can now take a job all the way to the print bed themselves.</p>
+<p>The second thing it replaces is wasted machine time. The automatic printability check and the failure monitoring mean fewer overnight jobs that fail silently. In a shop running machines around the clock, a failed 6-hour print isn't just wasted filament, it's a slot on the schedule you can't get back. Catching failures as they happen is throughput you're currently leaving on the floor.</p>
+<p>Keep the honesty here: this is not going to design a complex, tolerance-critical mechanical assembly for you. Your skilled CAD people still matter for the hard stuff. What this kills is the tax you pay to route every simple part through a specialist. That tax is most of the volume in a lot of shops.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>This is for any business with a 3D printer and more part requests than CAD hours.</p>
+<p>A <strong>print shop</strong> taking custom one-off jobs. The front counter can now quote and start simple parts without kicking every one back to a designer.</p>
+<p>A <strong>maker or Etsy business</strong> selling printed goods. Personalized items (the photo coaster is the perfect example) go from customer request to print queue in one step, at the volume personalization demands.</p>
+<p>A <strong>prototyping studio</strong> that iterates fast. &quot;Same bracket but 3mm taller and move the holes out 5mm&quot; becomes a sentence instead of a CAD revision cycle.</p>
+<p>A <strong>repair shop with a printer in the back.</strong> The tech who diagnoses the broken part doesn't need to also be the tech who models the replacement. They describe it, it prints.</p>
+<p>A <strong>dental lab, prop and cosplay shop, or sign shop.</strong> Any operation where the person who knows what the object should be has been bottlenecked by the software between them and the machine.</p>
+<p>The common thread: you already own the printer, you already have the demand, and the thing slowing you down is the specialized software skill sitting between a request and a finished part.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Start with simple, well-defined parts.</strong> The sentence-to-part magic is strongest on geometrically simple items with clear specs: spacers, brackets, holders, jigs, mounts. Describe those precisely (dimensions, hole sizes, thread specs) and you'll get clean results. Save the complex organic or tight-tolerance work for your CAD people.</p>
+<p><strong>Be specific in your descriptions.</strong> &quot;A spacer&quot; is a bad order. &quot;A 40mm outer diameter spacer, 10mm tall, with four M3 clearance holes on a 30mm bolt circle&quot; is a good one. The agent is only as good as the spec you hand it, exactly like a human machinist. The clearer your sentence, the better the part.</p>
+<p><strong>Let it run the printability check every time.</strong> It costs seconds and it saves failed prints. Don't skip it because you're in a hurry. The whole point is catching problems before you burn machine time.</p>
+<p><strong>Use the camera monitoring on long jobs.</strong> The failure recovery only helps if the agent can see the print. Get your camera connected so overnight and multi-hour jobs are actually being watched.</p>
+<p><strong>Let Claude Code or Codex do the setup.</strong> If the install steps feel intimidating, don't do them by hand. Open Claude Code, tell it to install Kiln and connect your printer, and let the agent run its own setup. This is the lowest-friction path in.</p>
+<p><strong>It's free and open source, so check it out first.</strong> The tool itself costs nothing. Your only running cost is the agent's API usage per job, which is small for simple parts, plus the filament and the printer you already own. Try it on scrap before you put it in front of a paying customer.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/cpa-quickbooks-monthly-close/">This Accountant Trained Her AI to Close the Books Every Month</a></strong>: The same idea in a different shop. Take the tool you already run your business on, put an AI agent on top, and hand it the repetitive skilled work.</li>
+<li><strong><a href="/playbooks/founder-runs-business-on-ai/">Run Your Business on AI (While Living Your Life)</a></strong>: The bigger picture for any small-shop owner. What it looks like when AI handles the operational grind and you handle the customers.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook builds on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by codeofaxel on GitHub. Credit where it is due — <a href="https://github.com/codeofaxel/Kiln" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

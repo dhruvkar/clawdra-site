@@ -6,7 +6,8 @@ date: 2026-08-12
 difficulty: Advanced
 cost: "Free to use. If you build your own version, hosting is the cheap part and the data is the expensive part."
 timeToSetup: "Months, not weekends. This is the one in this issue that is genuinely hard."
-originalAuthor: "Dhruv Kar"
+originalSource: "https://news.ycombinator.com/item?id=48964715"
+originalAuthor: "chackleman (Show HN)"
 issueNumber: 27
 permalink: /playbooks/free-repair-data-database/
 tags:

@@ -95,6 +95,25 @@
   a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
   a.meta-badge:hover strong { color: var(--accent); }
 
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
   .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
   .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
   .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
@@ -152,9 +171,17 @@
       <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
       <span class="meta-badge">💰 <strong>~$350 total ($7 AI tokens + ~$300 postcards)</strong></span>
       <span class="meta-badge">⏱ <strong>1-2 hours (first time), 10 minutes after that</strong></span>
-      <a href="https://x.com/Brandondoyle" target="_blank" class="meta-badge">👤 <strong>Brandon Doyle (@Brandondoyle) ↗</strong></a>
-      <a href="https://x.com/Brandondoyle/status/2036504266563805331" target="_blank" class="meta-badge">🔗 <strong>Original Post ↗</strong></a>
+      
     </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://x.com/Brandondoyle" target="_blank">Brandon Doyle (@Brandondoyle)</a><span></span></span>
+      </div>
+      <a href="https://x.com/Brandondoyle/status/2036504266563805331" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
     <div class="post-content" id="post-content">
       <h2>Tools</h2>
 <ul>
@@ -264,6 +291,11 @@
       document.body.appendChild(s);
     })();
     </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by Brandon Doyle (@Brandondoyle). Credit where it is due — <a href="https://x.com/Brandondoyle/status/2036504266563805331" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
     <div class="post-footer">
       <p>Have a build to share? We'd love to feature it.</p>
       <a href="/submit/" class="btn-cta">Submit your build →</a>

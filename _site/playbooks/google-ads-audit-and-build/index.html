@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An AI Read 60 Days of a Google Ads Account, Then Built the Next Campaign. One Prompt. — ClawDrop</title>
+  <meta name="description" content="One prompt against a live Google Ads account: rank every campaign, find where the money leaks, then build the replacement with keywords, negatives, and geo targeting. It lands paused, so nothing spends until you look at it.">
+  <meta property="og:title" content="An AI Read 60 Days of a Google Ads Account, Then Built the Next Campaign. One Prompt. — ClawDrop">
+  <meta property="og:description" content="One prompt against a live Google Ads account: rank every campaign, find where the money leaks, then build the replacement with keywords, negatives, and geo targeting. It lands paused, so nothing spends until you look at it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/google-ads-audit-and-build/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="An AI Read 60 Days of a Google Ads Account, Then Built the Next Campaign. One Prompt. — ClawDrop">
+  <meta name="twitter:description" content="One prompt against a live Google Ads account: rank every campaign, find where the money leaks, then build the replacement with keywords, negatives, and geo targeting. It lands paused, so nothing spends until you look at it.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/google-ads-audit-and-build/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 18, 2026</div>
+    <h1>An AI Read 60 Days of a Google Ads Account, Then Built the Next Campaign. One Prompt.</h1>
+    <p class="post-description">One prompt against a live Google Ads account: rank every campaign, find where the money leaks, then build the replacement with keywords, negatives, and geo targeting. It lands paused, so nothing spends until you look at it.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>The Claude or Codex subscription you already pay for, plus a connector to the ad account. Your ad spend does not change.</strong></span>
+      <span class="meta-badge">⏱ <strong>An afternoon to connect it. Ten minutes a month after that.</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who">Insightful Pipe (YouTube)<span></span></span>
+      </div>
+      <a href="https://www.youtube.com/watch?v=D3C2U5hFex0" target="_blank" rel="noopener" class="btn-source">Watch the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: the agent that reads the account and does the thinking. The demo used Codex, and the connector works the same from Claude</li>
+<li><a href="#aff-codex"><strong>Codex</strong></a>: what the person in the video actually ran, if you would rather use that</li>
+<li><a href="#aff-google-ads"><strong>Google Ads</strong></a>: your live account, which is the part that makes this real and also the part that makes it risky</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: if you want the review to run on the first of every month instead of when you remember</li>
+<li><a href="#aff-anthropic"><strong>Anthropic</strong></a>: a few cents of usage per review</li>
+</ul>
+<p>The connector in the demo is a paid MCP server, which is a small piece of software that hands your AI a key to a specific account. Google Ads has its own API if you would rather wire it yourself, and that path is free but slower to set up.</p>
+<h2>What You'll Build</h2>
+<p>A monthly Google Ads review that you do not do.</p>
+<p>The agent reads the last 60 days of the account, ranks your campaigns from best to worst, tells you where the money is going that should not be, then writes the next campaign and puts it in the account paused. You look at it, you turn it on.</p>
+<h2>The Story</h2>
+<p>Someone connected an AI to a live Google Ads account and gave it a single instruction: analyze the last 60 days, find the trends, name the best and worst campaigns, and propose a new one that is ready to launch.</p>
+<p>Here is what came back, in the order it came back.</p>
+<p>It ranked all four campaigns in the account from best to worst by efficiency. Click-through rate was up 11 percent. Conversion rate had gone from 2.5 to 3.1 percent. Broad match traffic had grown without the conversions to match it, which is the polite way of saying money was going out the door for clicks that were never going to buy. Mobile was pulling 64 percent of the clicks and returning half the conversion value.</p>
+<p>Any competent Google Ads manager finds those four things. That is the monthly report you are paying for.</p>
+<p>Then it kept going.</p>
+<p>It proposed a new campaign with a 280 dollar daily budget, four ad groups organized by match type and intent, 20 keywords, a negative keyword list, and geo targeting across seven states. The person watching approved it. The agent then built the whole thing inside the account: campaign, budget, bidding, geo targeting, four ad groups, 20 keywords, 12 negatives, device bid adjustments, and the responsive search ads.</p>
+<p>It created the campaign in paused status. Nothing spent a cent. The last thing in the video is the campaign sitting in the Google Ads interface exactly as described, waiting for someone to press go.</p>
+<h2>What Actually Happened Versus What It Sounds Like</h2>
+<p>This was a vendor demo. The company that makes the connector made the video, and the account had four campaigns in it, which is small. Take the polish off before you decide anything.</p>
+<p>What survives the discount is still the interesting part. The agent did not write a report about the campaign. It built the campaign. The gap between &quot;here is what I would do&quot; and &quot;I did it, go look&quot; is the entire gap between advice and delivery, and it just got closed for one of the most expensive line items a small business carries.</p>
+<p>Also worth noticing: the demo asked for a strategy and got an approval step before anything was built, and the finished campaign arrived paused. Whoever set that up had thought about what happens when this goes wrong. Most people building this kind of thing have not.</p>
+<h2>The Business Angle</h2>
+<p>Small accounts usually get managed for a few hundred to a couple thousand dollars a month, or ten to twenty percent of spend, whichever the agency thinks it can get. For that money you get a monthly review, some keyword and negative keyword maintenance, new ad copy when performance sags, and a report.</p>
+<p>Read the list again. Every item on it is what the agent did in one prompt.</p>
+<p>The honest version is that the retainer buys two different things and only one of them is now automatable. The review, the build, and the maintenance are mechanical. Knowing that your margins are thin on the product those high-intent keywords sell, or that the phone does not get answered after four o'clock so paid clicks after four are wasted, is not mechanical. The agent has no idea what your margins are and will never ask.</p>
+<p>So the play is not usually &quot;fire the agency this week.&quot; It is to stop paying agency rates for the mechanical 70 percent, and then have a much shorter conversation about the other 30.</p>
+<p>For agencies reading this: you already know which of your retainers is mostly the mechanical part. That is the one your client is about to run themselves.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Anyone spending real money on Google Ads who cannot tell you, right now, which of their campaigns is the worst one. Service businesses with a single account and a few campaigns, ecommerce owners who inherited an account from a previous agency, and agencies who want to hand three hours a month back to their team.</p>
+<h2>How Hard Is It</h2>
+<p>Weekend project, and mostly for the connecting part.</p>
+<p>Cost: your existing AI subscription plus the connector. The demo used a paid MCP server. Google's own Ads API costs nothing and takes longer to wire up. Neither one changes what you spend on ads, which remains the only large number in this playbook.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Run it read only first, for a full month.</strong> Connect it with read access, ask for the review, and compare what it says against what your agency sends you. You learn what it is good at for the price of nothing.</p>
+<p><strong>Write access is the whole risk.</strong> A connector with write permission on a live ad account can create campaigns, and anything that can create a campaign can spend money. The video says this out loud, which is to its credit: test on a low budget or sandbox account first.</p>
+<p><strong>Paused is the setting that makes this safe.</strong> Any version of this you build should create campaigns paused and let a human press go. If you take one thing from this playbook, take that.</p>
+<p><strong>Do not let it touch budgets on live campaigns.</strong> Reviewing is safe. Building paused is safe. Editing the budget of something that is currently running is where a bad night happens.</p>
+<p><strong>It cannot see your margins, your capacity, or your phone.</strong> It will happily scale a campaign that sells your worst-margin service, or drive calls to a line nobody answers on Fridays. That context lives in your head and has to go in the prompt.</p>
+<p><strong>Check the negatives and the ad copy by hand the first time.</strong> Keyword lists and negatives are where a small mistake gets expensive quietly. Read them once, properly, before anything runs.</p>
+<p><strong>Ask for the same review every month and keep them.</strong> Twelve of these in a folder is a performance history nobody in your business has ever had.</p>
+<h2>Keep Reading</h2>
+<ul>
+<li><a href="/playbooks/meta-ads-pipeline/">Research Your Competitors' Ads and Launch Your Own Campaign on Meta</a></li>
+<li><a href="/playbooks/ai-budget-cap/">He Spent $1,263 on AI in One Month. Then He Capped It.</a></li>
+<li><a href="/playbooks/one-person-agency/">The One-Person Agency: Charge Agency Rates as a Solo Operator</a></li>
+</ul>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by Insightful Pipe (YouTube). Credit where it is due — <a href="https://www.youtube.com/watch?v=D3C2U5hFex0" target="_blank" rel="noopener">watch the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

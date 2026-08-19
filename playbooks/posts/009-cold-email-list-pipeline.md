@@ -6,7 +6,6 @@ date: 2026-04-15
 difficulty: Intermediate
 cost: "$80-300/month (tools + verification)"
 timeToSetup: "A weekend for the first list, 2-3 hours per week after"
-originalSource: "https://clawdrop.org"
 originalAuthor: "Clawdrop"
 issueNumber: 9
 permalink: /playbooks/cold-email-list-pipeline/

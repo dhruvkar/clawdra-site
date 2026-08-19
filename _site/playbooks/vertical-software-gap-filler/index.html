@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working Around the Industry Software You Can&#39;t Replace — ClawDrop</title>
+  <meta name="description" content="A restaurant and commissary kitchen owner gave his agent its own login to the platform he&#39;s locked into. It now runs the daily jobs that platform never shipped, and drafts the reservation replies and invoices his managers send.">
+  <meta property="og:title" content="Working Around the Industry Software You Can&#39;t Replace — ClawDrop">
+  <meta property="og:description" content="A restaurant and commissary kitchen owner gave his agent its own login to the platform he&#39;s locked into. It now runs the daily jobs that platform never shipped, and drafts the reservation replies and invoices his managers send.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/vertical-software-gap-filler/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Working Around the Industry Software You Can&#39;t Replace — ClawDrop">
+  <meta name="twitter:description" content="A restaurant and commissary kitchen owner gave his agent its own login to the platform he&#39;s locked into. It now runs the daily jobs that platform never shipped, and drafts the reservation replies and invoices his managers send.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/vertical-software-gap-filler/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 28, 2026</div>
+    <h1>Working Around the Industry Software You Can&#39;t Replace</h1>
+    <p class="post-description">A restaurant and commissary kitchen owner gave his agent its own login to the platform he&#39;s locked into. It now runs the daily jobs that platform never shipped, and drafts the reservation replies and invoices his managers send.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>~$30-80/mo (agent runtime plus model costs, on top of software you already pay for)</strong></span>
+      <span class="meta-badge">⏱ <strong>One weekend for the first job. It grows one job at a time after that.</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/drdcuddy/" target="_blank">drdcuddy</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-hermes"><strong>Hermes</strong></a>: the agent doing the work, with its own logins to everything below</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: alternative agent runtime for the same build</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: another alternative that does the same jobs</li>
+<li><a href="#aff-airtable"><strong>Airtable</strong></a>: the database layer holding the operational data the industry software won't</li>
+<li><a href="#aff-square"><strong>Square</strong></a>: point of sale and inventory the agent edits directly</li>
+<li><a href="#aff-shopify"><strong>Shopify</strong></a>: online store inventory, same treatment</li>
+<li><a href="#aff-stripe"><strong>Stripe</strong></a>: payments flowing into the same picture</li>
+<li><a href="#aff-make"><strong>Make</strong></a>: the automation platform the agent administers for him</li>
+<li><a href="#aff-n8n"><strong>n8n</strong></a>: the self-hosted automation platform he is migrating to, kept in sync automatically</li>
+<li><a href="#aff-slack"><strong>Slack</strong></a>: the client channel the agent polices</li>
+<li><a href="#aff-google-calendar"><strong>Google Calendar</strong></a>: the business calendar the agent maintains and uses for staffing</li>
+<li><a href="#aff-gmail"><strong>Gmail</strong></a>: where reservation requests arrive and drafted replies wait</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>An operations layer that sits on top of the software you already pay for and does the things that software refuses to do.</p>
+<p>Every small business has one. The industry-specific platform you are locked into. The restaurant system, the salon system, the field service system, the kitchen management system. It handles maybe seventy percent of the job. The other thirty percent is you, every morning, doing the same manual work to cover for it.</p>
+<p>This build hands that thirty percent to an agent. You give the agent its own login to the platform, plus access to your email, your point of sale, your calendar, and your team chat. Then you describe the gaps in plain English, one at a time, and it starts closing them on a schedule.</p>
+<p>Think of it less as a replacement for your software and more as the employee whose job is working around it.</p>
+<h2>The Story</h2>
+<p>This one comes from a Reddit comment, not a big writeup, which is part of why it is so good. Someone asked the r/hermesagent community what they use their agent for other than coding. A user going by drdcuddy answered with a list. It reads like a job description.</p>
+<p>He runs a restaurant and a commissary kitchen. If you have not come across one, a commissary kitchen is a licensed commercial kitchen that rents time and space to food businesses that cannot afford their own. Food trucks, caterers, small packaged-food brands. So he has two businesses stacked on each other: a restaurant with customers, and a facility with tenants.</p>
+<p>That means two entirely different operational headaches, two sets of software, and one owner.</p>
+<h2>The Jobs</h2>
+<p><strong>It drafts the reservation replies and the invoices.</strong> When a reservation request comes in, the agent writes the reply and creates the draft invoice. His managers open it, make the occasional edit, send it, and fire off the deposit request. He says this saves them hours every single week. Notice that the agent never sends anything itself. It gets the work to ninety percent so a human spends thirty seconds instead of ten minutes.</p>
+<p><strong>It edits inventory directly.</strong> It updates his point of sale and his online store inventory itself. His own words are that it does this far faster than he can do it manually. Worth noticing what that implies: he is not asking for a report about inventory, he is telling the agent to change the inventory, and it does.</p>
+<p><strong>It runs the software the vendor undercooked.</strong> He uses a commissary kitchen management platform for his tenants. He gave the agent API access and its own account on the platform. Then he set it running daily jobs to, in his words, fill in gaps that the software is unable to do. It surfaces problems, flags new leads, and can set up and communicate with new clients.</p>
+<p>So he did not switch platforms or wait on a feature request. He hired something to operate the software he was stuck with, on his behalf, every day.</p>
+<p><strong>It polices the client Slack.</strong> The commissary tenants have a Slack channel. The agent watches it, adds and removes members, pushes out notices about upcoming changes to access and services, and automatically removes clients who have left. That last one is the kind of admin task that never gets done on time, and every month it does not get done is a month a former tenant can still see your operations.</p>
+<p><strong>It administers his automation platform.</strong> He was already running a pile of connections between his database, his point of sale, his payment processor, his printing system, and his email. The agent maintains them.</p>
+<p><strong>It is handling his own migration.</strong> He wants to move off his paid automation platform onto a self-hosted one. So the agent built a full mirror of the paid account in the self-hosted tool, and now watches for changes he makes in the old one and updates the new one to match. He can flip the switch whenever he is ready, with no migration weekend.</p>
+<p><strong>It runs his calendar like an operations person would.</strong> It maintains upcoming events and updates them as details change. His best example: it added every World Cup match to the business calendar so they could plan restaurant staffing around the tournament, then kept updating which teams were playing as the bracket resolved.</p>
+<p>Nobody sells that as a product. There is no integration for &quot;put the games my customers will watch on my staffing calendar and keep it current,&quot; and there never will be, because the market for it is him. It took a five-minute conversation with an agent.</p>
+<h2>The Pattern Worth Copying</h2>
+<p>Strip away the specifics and there are three moves worth copying into any business.</p>
+<p><strong>Move one: give the agent its own account.</strong> Not your login, its own: a separate email address, a separate seat in the platform, a separate Slack user. That is what turns it from something you ask questions into something that does work while you are asleep. It also means you can see exactly what it did, and cut off access in one click if you need to.</p>
+<p><strong>Move two: point it at the gap, not the whole job.</strong> He did not ask it to run the commissary. He asked it to do the specific daily things the commissary software cannot. Each job is small and boring and describable in a sentence. That is what makes them reliable.</p>
+<p><strong>Move three: let it write, let a human send.</strong> Reservations and invoices get drafted rather than issued. Anything that touches a customer or moves money has a person in front of it, while the purely internal work like inventory updates and removing a departed tenant from Slack runs on its own. He has been deliberate about which jobs fall on which side of that line.</p>
+<h2>The Business Angle</h2>
+<p>The bundle of work in that list is a job. Drafting client correspondence, maintaining inventory across two systems, onboarding and offboarding tenants, keeping the calendar accurate, chasing what the software missed, keeping the automations from rotting. In most markets, hiring an operations coordinator or an assistant manager to do exactly this runs $45,000 to $60,000 a year plus payroll taxes. For a restaurant operating on the margins restaurants operate on, that hire is often simply impossible, which is why the owner does it at eleven at night instead.</p>
+<p>Then there is the second bill, the one nobody puts on a spreadsheet. When your industry software does not do something, you have three options: pay a consultant to build a workaround, migrate to a different platform, or absorb the work yourself forever. The consultant costs $2,000 to $10,000 and the workaround breaks the next time the vendor ships an update. The migration costs you a month. Absorbing it yourself is what almost everyone picks, and it ends up costing the most, because it never stops.</p>
+<p>His agent is a fourth option that did not exist two years ago. Cost is the agent runtime and the model, call it $30 to $80 a month on top of software he was already buying.</p>
+<p>The migration trick deserves attention on its own. Moving from a paid automation platform to a self-hosted one usually means a painful cutover weekend or a consultant. He has the agent maintaining both in parallel until he feels like switching. That is a several-thousand-dollar project running quietly in the background for free.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Anyone who has ever said &quot;our system doesn't do that.&quot;</p>
+<p><strong>Restaurants and bars.</strong> Reservation replies, deposit invoices, inventory across the register and the online store, staffing against what is actually happening in town that week.</p>
+<p><strong>Anyone renting space or time.</strong> Commissary kitchens, coworking spaces, salon suites, storage, studios, gyms. Tenant onboarding and offboarding is pure repetitive admin, and the offboarding half is a security problem when it slips.</p>
+<p><strong>Trades and field service.</strong> Your dispatch software almost certainly does not do the one report you need, and it definitely does not talk to your accounting the way you want.</p>
+<p><strong>Medical, dental, and veterinary practices.</strong> Practice management software is famously rigid and famously expensive to customize. The agent works around it instead of through it.</p>
+<p><strong>Property managers.</strong> Multiple portals, none of which talk to each other, plus a constant stream of the same tenant messages.</p>
+<p><strong>Anyone paying for two platforms that do not integrate.</strong> The agent is the integration. It logs into both like a person would.</p>
+<p>The test: name the thing you do manually every week because the software cannot. If you can describe it in one sentence, it is a candidate.</p>
+<h2>How Hard Is It</h2>
+<p>Weekend project for the first job, then it compounds.</p>
+<p>Nothing in this list is technically fancy. An agent with logins, some scheduled jobs, and clear instructions about what it may do alone versus what it must leave in a draft. Picking the right first job is harder than building it.</p>
+<p>Pick one that is boring, repetitive, internal, and low stakes. Removing departed clients from a Slack channel is a perfect first job. Nobody gets hurt if it is late, you will notice immediately if it is wrong, and it is genuinely annoying to do by hand. Get that running for two weeks. Then add the next one.</p>
+<p>Do not start with anything that emails a customer or moves money. Earn your way up to those, and even then, keep them as drafts.</p>
+<p><strong>Cost:</strong> roughly $30 to $80 a month for the agent and the models, on top of the software you already pay for. The point of this build is that it does not replace your existing subscriptions, it makes them tolerable.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Give it its own account, and use a real one.</strong> Separate email, separate seat, separate Slack user. You want its actions in the audit log under its own name, so when something looks wrong you know instantly whether it was you, your manager, or the agent.</p>
+<p><strong>Check whether your platform has an API before you promise yourself anything.</strong> He had API access to his kitchen management software, which is what made the daily jobs clean. If yours has no API, the agent can still drive the website like a person does, but it is slower and more fragile. Find out first.</p>
+<p><strong>Draft, do not send.</strong> Every job that touches a customer or a dollar should end in a draft that a human releases. Treat that as the permanent design rather than a starter setting. His managers still click send on every reservation reply and he is still saving hours.</p>
+<p><strong>Offboarding is the job to automate first.</strong> Removing people who left is the task most likely to be forgotten and most likely to matter. It is also completely mechanical. Perfect starting point.</p>
+<p><strong>Keep a written list of what it is allowed to do unattended.</strong> Once you have eight or ten jobs running, you will lose track. Write down which ones run on their own and which ones stop for approval, and review it monthly.</p>
+<p><strong>Use it to escape a platform, not just to survive one.</strong> The mirror-and-sync trick is underrated. If you are trapped on expensive software, have the agent build and maintain your exit in parallel. You get leverage on renewal day even if you never actually leave.</p>
+<p><strong>Expect this to grow one sentence at a time.</strong> He did not design this system. He accumulated it. Every time he caught himself doing something manual, that became the next job.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/nex-crm/">Replace Your CRM With a Conversation</a></strong>: The same instinct pointed at your customer database instead of your operations stack.</li>
+<li><strong><a href="/playbooks/qsr-shift-coach/">The Restaurant GM Who Built AI Coaches for Every Shift</a></strong>: Hospitality again, but aimed at the people on the floor rather than the software in the back office.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by drdcuddy on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/hermesagent/comments/1v34auv/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

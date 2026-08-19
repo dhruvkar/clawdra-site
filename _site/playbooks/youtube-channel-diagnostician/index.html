@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Analytics Tell You What Happened. This Agent Tells You Why. — ClawDrop</title>
+  <meta name="description" content="He wired a YouTube data server to a checklist built from three named growth experts, so the agent diagnoses weak hooks and dying thumbnails instead of handing over another dashboard.">
+  <meta property="og:title" content="Your Analytics Tell You What Happened. This Agent Tells You Why. — ClawDrop">
+  <meta property="og:description" content="He wired a YouTube data server to a checklist built from three named growth experts, so the agent diagnoses weak hooks and dying thumbnails instead of handing over another dashboard.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/youtube-channel-diagnostician/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Your Analytics Tell You What Happened. This Agent Tells You Why. — ClawDrop">
+  <meta name="twitter:description" content="He wired a YouTube data server to a checklist built from three named growth experts, so the agent diagnoses weak hooks and dying thumbnails instead of handing over another dashboard.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/youtube-channel-diagnostician/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 4, 2026</div>
+    <h1>Your Analytics Tell You What Happened. This Agent Tells You Why.</h1>
+    <p class="post-description">He wired a YouTube data server to a checklist built from three named growth experts, so the agent diagnoses weak hooks and dying thumbnails instead of handing over another dashboard.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>Free. A YouTube API key and a free database tier.</strong></span>
+      <span class="meta-badge">⏱ <strong>A weekend, most of it writing the checklist</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/Positive_Asparagus63/" target="_blank">Positive_Asparagus63</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/AI_Agents/comments/1vehmfw/i_built_an_ai_agent_that_acts_as_a_youtube_growth/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent that holds the checklist and does the reasoning</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: the same job from a terminal</li>
+<li><a href="#aff-youtube"><strong>YouTube</strong></a>: the data source, through its free public API</li>
+<li><a href="#aff-mcp"><strong>MCP</strong></a>: how the agent gets structured access to that data instead of raw JSON</li>
+<li><a href="#aff-obsidian"><strong>Obsidian</strong></a>: a reasonable place to keep the checklist as plain files you can edit</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>An agent that looks at your channel and tells you what is wrong with it.</p>
+<p>Not a dashboard. Your analytics page already reports that the video underperformed, which you knew, because you watched the number. What you want is the sentence after that. The hook was slow. The thumbnail is competing with itself. This topic has been flat for four videos and the audience told you why in the comments.</p>
+<p>Two pieces make that possible. A tool layer that gives the agent clean access to your channel data, and a checklist of what good looks like, written down, that the agent measures your channel against.</p>
+<h2>The Story</h2>
+<p>Someone posted this on Reddit under the handle Positive_Asparagus63, in r/AI_Agents. Their complaint was specific. Most YouTube tools just hand you numbers and leave you to work out what they mean.</p>
+<p>So they built two things. An MCP server for YouTube data, which is the plumbing that lets an agent ask structured questions about a channel. Then a skill called CreatorLens sitting on top, acting as a growth strategist layer.</p>
+<p>CreatorLens is the interesting half, and it is not code. It is an extendable checklist of advice they pulled out of videos by Paddy Galloway, Ed Lawrence and Kallaway. Named practitioners, specific rules, written down where the agent can apply them. They point out that adding your own tested rules to it is trivial.</p>
+<p>With both pieces in place the agent stops reporting and starts diagnosing. Weak hooks. Poor thumbnails. Content that is flatlining. It also scans your niche for outlier channels worth learning from, using a dedicated outlier-detection tool that filters out noise so you only see channels that genuinely pass a performance check.</p>
+<p>The rest of what it does is context-gathering so those judgments are not guesses. It pulls channel stats, top videos and trending videos. It reads transcripts to analyze what was actually said, and comments to read how the audience reacted. It caches all of that in a database so it does not burn API quota answering the same question twice.</p>
+<p>Their own takeaway was about design, not YouTube. The interesting part was not wrapping the API. It was choosing a tool set that gives the agent just enough structured data to reason well without drowning it in raw JSON. Fewer, well-scoped tools beat exposing everything the API offers.</p>
+<h2>The Checklist Is the Whole Product</h2>
+<p>Strip this build down and you find something that has nothing to do with video.</p>
+<p>The data is free and public. The plumbing is a weekend. What makes the agent useful is that someone sat down and wrote out what good looks like, sourced from people who have actually grown channels, in a form the agent can check against.</p>
+<p>That is transferable to any part of your business where expertise exists as scattered advice and your own numbers exist in a dashboard nobody acts on.</p>
+<p>The pattern is: take a domain where you know good from bad but the knowledge lives in your head or in other people's talks, write the rules down as an editable list, and give an agent access to both the rules and your data. Then ask it what is wrong.</p>
+<p>Nobody needs to write software for this. The rules are a text file. The skill is telling the agent to apply them.</p>
+<h2>The Business Angle</h2>
+<p><strong>What you are paying now.</strong> A YouTube growth consultant runs $500 to $2,000 a month for a channel audit and ongoing advice, and the deliverable is usually a call plus a document. Agencies that do content strategy retainers start higher. Plenty of businesses skip it entirely and just post, which is its own cost.</p>
+<p><strong>What this costs.</strong> Free. A YouTube Data API key costs nothing, and the caching database runs on a free tier. Your only real spend is model usage.</p>
+<p><strong>What it replaces, honestly.</strong> Not the strategist. It replaces the recurring audit, which is the part of a consultant's job that is a checklist applied to your numbers. The good consultants were always selling judgment about what to make next, and that part holds up.</p>
+<p><strong>Where the real money is for a business channel.</strong> Most companies with a YouTube channel are not trying to become creators. They post because someone said they should, they get a few hundred views, and nobody can say whether it is working or why. This build turns that into a specific answer, which is the difference between abandoning the channel and fixing it.</p>
+<p><strong>And the agency version.</strong> If you sell marketing services, this is a productized channel audit you can run in an afternoon for every client on your roster, with your own rules encoded in the checklist rather than someone else's.</p>
+<h2>Who Should Steal This Idea</h2>
+<p><strong>Any business running a YouTube channel that is not obviously working.</strong> Which is nearly all of them.</p>
+<p><strong>Course creators and coaches.</strong> Your channel is the funnel. Knowing which hooks hold and which topics stall is the whole business.</p>
+<p><strong>Marketing agencies.</strong> Encode your own methodology in the checklist and run it across every client account.</p>
+<p><strong>Local businesses posting video.</strong> Home services, gyms, restaurants, clinics. You are competing in a small niche where outlier detection actually surfaces useful neighbors to learn from.</p>
+<p><strong>Anyone who already pays for a channel audit.</strong> Run this first and see what is left worth paying for.</p>
+<p><strong>And the wider case.</strong> Anyone with a dashboard they do not act on and a folder of expert advice they never applied. The pattern moves.</p>
+<h2>How Hard Is It</h2>
+<p>A weekend, and the split is unusual. The plumbing is the fast part now. The checklist is where the work is.</p>
+<p>Get a free YouTube Data API key. Connect it to your agent so it can pull channel stats, video performance, transcripts and comments. Add a small database for caching so repeat questions do not re-spend your quota.</p>
+<p>Then write the checklist, which is the part that decides whether any of it is useful. Watch the people who actually know your field and write their rules down as plain statements the agent can check. Hook must land inside the first ten seconds. Thumbnail must be readable at phone size. Title and thumbnail must not repeat each other. Your own rules go in the same file, and you will add to it every time you learn something.</p>
+<p>Follow the source's advice on tools. Give the agent a small number of well-scoped ways to get data rather than everything the API can do. It reasons better with less.</p>
+<p><strong>Cost:</strong> free, aside from model usage.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Write the checklist before you build the plumbing.</strong> The data access is commodity work. If you skip the rules you have built another dashboard, which is the thing you were trying to escape.</p>
+<p><strong>Name your sources in the checklist.</strong> The original pulled from Paddy Galloway, Ed Lawrence and Kallaway. Knowing which rule came from where matters when two of them disagree, and they will.</p>
+<p><strong>Cache aggressively.</strong> The free API quota is real and you will burn it re-asking the same questions. The source used a database purely for this and it is worth copying.</p>
+<p><strong>Fewer tools, better scoped.</strong> The builder's own conclusion. An agent handed every endpoint drowns in raw JSON and reasons worse than one given six clean questions it can ask.</p>
+<p><strong>Feed it comments, not just numbers.</strong> Sentiment on the comment thread often explains the metric. That combination is what makes the output feel like a diagnosis instead of a report.</p>
+<p><strong>Be careful with outlier detection.</strong> Filtering for channels that pass a real performance check is what makes it useful. Without that filter you get a list of large channels, which tells you nothing you did not know.</p>
+<p><strong>Add your own rules as you learn them.</strong> The checklist is the asset and it compounds. Every time a video works and you understand why, write the rule down.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/youtube-competitor-intel-agents/">Fire the Research Analyst: Three Agents That Spy on Your Competitors Every Sunday</a></strong>: The outward-facing version, watching 50 competitor channels instead of diagnosing your own.</li>
+<li><strong><a href="/playbooks/daily-content-machine/">Post on X and LinkedIn Every Day Without Being a 'Content Person'</a></strong>: What to do once you know which topics land.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by Positive_Asparagus63 on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/AI_Agents/comments/1vehmfw/i_built_an_ai_agent_that_acts_as_a_youtube_growth/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

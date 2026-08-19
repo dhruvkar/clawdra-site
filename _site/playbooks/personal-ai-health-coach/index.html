@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>He Built an AI Health Coach That Makes Habits Stick — ClawDrop</title>
+  <meta name="description" content="A maker built an open-source AI health assistant, used it for weeks, ran small sleep experiments on himself, and measurably improved his deep sleep. Here&#39;s how to run your own.">
+  <meta property="og:title" content="He Built an AI Health Coach That Makes Habits Stick — ClawDrop">
+  <meta property="og:description" content="A maker built an open-source AI health assistant, used it for weeks, ran small sleep experiments on himself, and measurably improved his deep sleep. Here&#39;s how to run your own.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/personal-ai-health-coach/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="He Built an AI Health Coach That Makes Habits Stick — ClawDrop">
+  <meta name="twitter:description" content="A maker built an open-source AI health assistant, used it for weeks, ran small sleep experiments on himself, and measurably improved his deep sleep. Here&#39;s how to run your own.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/personal-ai-health-coach/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 20, 2026</div>
+    <h1>He Built an AI Health Coach That Makes Habits Stick</h1>
+    <p class="post-description">A maker built an open-source AI health assistant, used it for weeks, ran small sleep experiments on himself, and measurably improved his deep sleep. Here&#39;s how to run your own.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner to Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>Free and open source, plus modest agent API costs (a few dollars a month) instead of a $100-200/mo human coach or habit-app subscription</strong></span>
+      <span class="meta-badge">⏱ <strong>An afternoon to install it and connect your data</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://news.ycombinator.com/item?id=48926336" target="_blank">the Murph maker (Show HN)</a><span></span></span>
+      </div>
+      <a href="https://news.ycombinator.com/item?id=48926336" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-murph"><strong>Murph</strong></a>: the open-source personal health assistant this whole playbook is built around, from withmurph.ai</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent runtime this kind of always-on personal assistant runs on</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: alternative agent harness for the same setup</li>
+<li><a href="#aff-anthropic"><strong>Anthropic</strong></a>: the model provider behind the assistant's reasoning</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A private, always-on health assistant that lives on your own machine, knows your goals, and actually helps you change your behavior. Not another app with a streak counter you'll abandon in nine days. An assistant you can talk to, that remembers what you're working on, runs small experiments with you, and keeps you honest.</p>
+<p>The maker who built this open-source tool, called Murph, has been running it on himself for weeks. He used it to run a few sleep experiments, small tweaks to his routine that he tracked over time, and he measurably improved his deep sleep. He also used it to run challenges over group text with his friends, the kind of &quot;let's all do this for two weeks&quot; push that usually falls apart by day three.</p>
+<p>The output is a health coach that costs the price of an API bill instead of $100 to $200 a month for a human coach, and that actually does the one thing most habit apps never manage: it helps the change stick.</p>
+<p>This is a real, in-use tool, and it's open source. You install it, connect your data, and start using it. Claw Drop found it. The maker built it and runs it every day.</p>
+<h2>The Story</h2>
+<p>Here's the honest truth about health apps. You download one, you're excited for a week, you log a few meals or nights of sleep, and then life happens and the app becomes another icon you swipe past. The problem was never information. You already know you should sleep more, move more, and drink less. The problem is behavior. Changing what you actually do, day after day, is genuinely hard.</p>
+<p>That's the exact problem the maker of Murph set out to solve. Everyone has something they want to improve. Almost nobody has a tool that makes the improvement stick. So he built an open-source personal health assistant designed around that single job: not to give you more data, but to help you change.</p>
+<p>Then he did the thing that makes this worth writing about. He used it on himself, for weeks, as a daily tool. Not a demo he spun up for a launch. A real assistant he actually runs.</p>
+<p>His first project was sleep. He ran a few small experiments with the assistant, adjusting things in his routine and watching how his sleep responded over time. The result was concrete: his deep sleep, the restorative kind that actually determines whether you feel like a person the next day, measurably improved. He didn't guess. He ran experiments and watched the numbers move.</p>
+<p>His second project was accountability. He used the assistant to run challenges over a group text with friends. Anyone who has ever tried to get a group of adults to stick to anything for two weeks knows how quickly that collapses. Having something that keeps the challenge alive, checks in, and nudges people is the difference between a fun idea and an actual change.</p>
+<h2>Why This Works When Habit Apps Don't</h2>
+<p>Most habit tools fail for the same reason. They put the entire burden of behavior change on you. They show you a chart and a streak, and then they wait for you to supply all the willpower. That's backwards. If willpower alone worked, you wouldn't have needed the app.</p>
+<p>An AI assistant flips the dynamic in a few specific ways.</p>
+<p>It remembers. Your assistant knows what you said last week, what you're working on, and what you tried that didn't work. You're not starting from a blank screen every day. You're continuing a conversation with something that has context.</p>
+<p>It's conversational. You can tell it &quot;I slept terribly last night and I think it was the late coffee&quot; in plain English, and it can factor that in. You're not tapping through a rigid logging flow. You're talking to something.</p>
+<p>It runs experiments, not just tracking. This is the real unlock. Tracking tells you what happened. An experiment tells you what works for you specifically. The maker didn't just watch his sleep numbers. He changed one thing at a time and measured the effect, the same way a good coach would. That's the difference between data and progress.</p>
+<p>It's private. Because it's open source and runs on your own setup, your health data doesn't become the product. For a category as personal as sleep, mood, food, and habits, that matters more than almost anywhere else.</p>
+<h2>How to Run Your Own</h2>
+<p>You don't need to be technical to get value here, but you do need to be willing to spend an afternoon setting it up. Here's the shape of it.</p>
+<h3>1. Install Murph</h3>
+<p>Murph is open source and lives at withmurph.ai. Because it's open, you can read exactly what it does, run it yourself, and change it if you want. Getting it running is the afternoon part. Follow the project's setup instructions, get the assistant talking, and confirm it works before you connect anything personal.</p>
+<h3>2. Connect Your Data</h3>
+<p>The assistant becomes useful the moment it can see what's actually happening in your life. Sleep data is the natural first thing to hook up, since it's the experiment the maker ran and it produces clear numbers you can move. Start with one data source rather than trying to wire up everything you own. One clean input beats five messy ones.</p>
+<h3>3. Pick One Thing to Improve</h3>
+<p>Do not try to overhaul your entire life on day one. That's the exact mistake that kills every New Year's resolution. Pick one thing. The maker picked sleep. Sleep is a great first target because it's measurable, it responds to specific changes, and improving it makes everything else easier.</p>
+<h3>4. Run a Small Experiment</h3>
+<p>Change one variable. Cut caffeine after 2pm, or move your last screen an hour earlier, or shift your bedtime by 30 minutes. Then let the assistant help you watch what happens over a week or two. The point is to isolate what works for your body, not to copy someone else's routine. This is the part that most habit apps simply cannot do, and it's where the real behavior change comes from.</p>
+<h3>5. Add Accountability</h3>
+<p>Once you've got one experiment running, bring in other people. The maker ran challenges over group text with friends. Social accountability is one of the most reliable behavior-change levers that exists, and it's usually the piece that's missing. A challenge with three friends and something keeping it alive will outperform any solo streak counter.</p>
+<h2>What It Costs</h2>
+<p>This is where the math gets almost silly.</p>
+<p>A human health or wellness coach runs $100 to $200 a month, often more, and you get an hour of their attention a week if you're lucky. A premium habit or sleep app is a subscription that mostly shows you charts. Murph is free and open source. Your only real cost is the agent API bill that powers the assistant's reasoning, which for personal daily use lands in the range of a few dollars a month.</p>
+<p>So the comparison isn't &quot;cheap app versus expensive app.&quot; It's &quot;a private, always-on assistant that runs experiments and keeps you accountable, for the price of a coffee or two a month, versus a human you can only afford to see occasionally or an app that doesn't actually change your behavior.&quot;</p>
+<p>The value isn't really the money, though. It's that this is the version that works. Cheap and abandoned is worse than free and used every day.</p>
+<h2>The Light Business Angle</h2>
+<p>Money here is upside, not the headline. But if you work in health, it's real upside.</p>
+<p>If you're a wellness coach, a personal trainer, or a health practitioner, the hardest part of your job is the six days a week your client isn't in front of you. That's where good intentions quietly die. An assistant like this, set up for a client, becomes a between-sessions accountability layer. It keeps the plan alive when you're not there, and it hands you a much better picture of what actually happened when the client comes back.</p>
+<p>If you're a solo operator looking for a service to offer, &quot;I'll set up your personal AI health coach&quot; is a clean, concrete package. It's an afternoon of setup, it's open source so there's no vendor lock-in to explain, and the outcome is something people genuinely want and mostly fail to build for themselves.</p>
+<p>But run it on yourself first. The credibility of offering this to anyone else comes entirely from having used it, changed something real, and being able to say so honestly.</p>
+<h2>A Few Honest Notes</h2>
+<p><strong>Start smaller than you think.</strong> One goal, one experiment, one data source. The instinct to fix everything at once is exactly the instinct that has failed you before.</p>
+<p><strong>Measure something real.</strong> Sleep works because you can see it move. Pick a first target where you'll actually know whether it's working, not a vague &quot;feel better&quot; goal you can talk yourself into or out of.</p>
+<p><strong>It's a tool, not a doctor.</strong> This is a personal habit-and-experiment assistant. It is not medical advice, and it doesn't replace a real clinician for anything that matters. Use it for the everyday behavior-change stuff it's built for.</p>
+<p><strong>The point is the sticking, not the setup.</strong> The afternoon of installing it is the easy part. The win is that six weeks from now you're still using it. Design your first experiment to be so small you can't fail at it, and let the momentum build from there.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/ai-endurance-coach-cadence/">He Replaced His Endurance Coach With an AI That Adjusts His Training Plan in Real Time</a></strong>: The serious-athlete version of this idea. Where this playbook is about everyday habits and sleep for a normal person, that one is about squeezing performance out of a real training plan.</li>
+<li><strong><a href="/playbooks/g-bot-home-brain/">He Gave His Home a Brain. 50 Days Later, His AI Wakes Him Up, Cleans His House, and Judges His Sleep.</a></strong>: The same &quot;private assistant that actually knows your life&quot; pattern, pointed at your household instead of your health.</li>
+</ul>
+<p><strong>Want the foundations?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the assistant-building patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by the Murph maker (Show HN). Credit where it is due — <a href="https://news.ycombinator.com/item?id=48926336" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

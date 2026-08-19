@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>He Tested 8 AI Memory Products Across 2,176 Tasks. A Folder of Text Files Won. — ClawDrop</title>
+  <meta name="description" content="A plain markdown wiki the agent curates itself scored 98.5 and beat every commercial memory product. Here is what the benchmark found, and the three questions to ask before you pay for memory.">
+  <meta property="og:title" content="He Tested 8 AI Memory Products Across 2,176 Tasks. A Folder of Text Files Won. — ClawDrop">
+  <meta property="og:description" content="A plain markdown wiki the agent curates itself scored 98.5 and beat every commercial memory product. Here is what the benchmark found, and the three questions to ask before you pay for memory.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/agent-memory-benchmark/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="He Tested 8 AI Memory Products Across 2,176 Tasks. A Folder of Text Files Won. — ClawDrop">
+  <meta name="twitter:description" content="A plain markdown wiki the agent curates itself scored 98.5 and beat every commercial memory product. Here is what the benchmark found, and the three questions to ask before you pay for memory.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/agent-memory-benchmark/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 4, 2026</div>
+    <h1>He Tested 8 AI Memory Products Across 2,176 Tasks. A Folder of Text Files Won.</h1>
+    <p class="post-description">A plain markdown wiki the agent curates itself scored 98.5 and beat every commercial memory product. Here is what the benchmark found, and the three questions to ask before you pay for memory.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner</strong></span>
+      <span class="meta-badge">💰 <strong>Free if you use files. $341 to $569 per 1,000 answers depending on what you pick.</strong></span>
+      <span class="meta-badge">⏱ <strong>An afternoon</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who"><a href="https://www.reddit.com/user/Major-Shirt-8227/" target="_blank">Major-Shirt-8227</a><span> on Reddit</span></span>
+      </div>
+      <a href="https://www.reddit.com/r/AI_Agents/comments/1veeix3/i_ran_8_ai_agent_memory_systems_through_2176/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent that curates the files and reads them back</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: does the same job from a terminal</li>
+<li><a href="#aff-hermes"><strong>Hermes</strong></a>: another runtime that works the same way</li>
+<li><a href="#aff-obsidian"><strong>Obsidian</strong></a>: a comfortable way to read and edit the markdown yourself</li>
+<li><a href="#aff-git"><strong>Git</strong></a>: version history for the memory, which you get free by keeping it in a repo</li>
+<li><a href="#aff-github"><strong>GitHub</strong></a>: where the winning approach, Karpathy's llm-wiki pattern, is published</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A memory your agent maintains as a folder of text files, plus enough information to decide whether you should buy a product instead.</p>
+<p>The build is genuinely small. Your agent keeps a set of markdown files, writes to them as it learns things about you and your business, links them together, and reads them before it answers anything. No vendor. No subscription. No API key beyond the model you already pay for.</p>
+<p>What makes it worth doing is the evidence behind it. Someone ran eight memory systems through the same test and published the numbers, and the boring approach won by a clear margin.</p>
+<h2>The Story</h2>
+<p>Someone on Reddit under the handle Major-Shirt-8227 asked r/AI_Agents a few weeks back whether anyone had actually made a second brain work. About 75,000 people read the thread, and most of the comments were frustration. They had published a web search benchmark the month before and promised memory tools were next.</p>
+<p>So they built the Agentic Memory Index. Same agent setup, eight different memory systems underneath it, 272 scored tasks each. That is 2,176 tasks in total.</p>
+<p>The test design is the part worth stealing. Of the 272 tasks, 200 were questions about facts stored across simulated multi-week working relationships. The other 72 were questions about facts that were never stored at all, sitting there to catch systems that invent memories. There was a separate scale test against a 5,000-page store. The judge was calibrated against two independent human labelers before the run.</p>
+<p>Then the result. The winner is not a product. A plain markdown wiki that the agent curates itself, following Karpathy's llm-wiki pattern, scored 98.5. Every commercial product came in below it.</p>
+<p>Mitosis Cortex was the best hosted product at 96.9. gbrain, a free open-source local tool, scored 92.9 and beat every hosted API except Mitosis Cortex. Mem0 scored 92.3 and was the cheapest per thousand successful answers at $341.</p>
+<p>The failures are more instructive than the rankings. Zep's problem was freshness. A fact you just stored took 162.7 seconds at the median before the system could answer a question about it, and it passed 8 of 24 update questions. Supermemory was nearly perfect on recent memories, 59 of 60 on recall, and then passed only 11 of 72 long-horizon questions.</p>
+<p>One commenter summed the whole thing up better than the report did. We build all this complex memory infrastructure and the agent just wants a notepad.</p>
+<h2>The Part the Headline Leaves Out</h2>
+<p>The author was honest about the catch in the comments, and you should hear it before you rip out anything you are paying for.</p>
+<p>The markdown wiki is the least token-efficient approach in the test, roughly half as efficient as the most efficient tool. It cost $568.93 per thousand successful answers. Mem0, which scored six points lower, cost $341 for the same thousand answers.</p>
+<p>So the free thing is not the cheap thing. You are not paying a vendor, you are paying the model to read more text every time it needs to remember something. For a small operation that difference is noise. If you are running an agent that answers hundreds of questions a day, it is a real line on the bill.</p>
+<p>The other caveat is collaboration. A folder of markdown files works beautifully for one person and gets awkward the moment several people and several agents need to write to it at once. Nobody has solved that part elegantly yet.</p>
+<p>That is the honest shape of the decision. Best accuracy, worst token cost, weakest at collaboration.</p>
+<h2>The Business Angle</h2>
+<p><strong>What people are about to spend.</strong> Memory is the current upsell in every AI tool pitch. Hosted memory APIs are sold per seat or per call, and the pitch is always that your agent forgets things and this fixes it. Some of those products are good. The best one in this test scored 96.9, which is genuinely close.</p>
+<p><strong>What the benchmark actually buys you.</strong> It moves you from a vendor pitch to three questions you can ask any of them:</p>
+<p>How long after I tell you something can you answer a question about it? Zep took 162.7 seconds at the median, which is fine for a nightly digest and useless for a live conversation.</p>
+<p>How well do you do on things I told you two months ago? Supermemory was almost perfect on recent facts and failed 61 of 72 long-horizon questions.</p>
+<p>What happens when I ask about something I never told you? That is what those 72 planted questions were for, and it is the failure that damages you most, because an invented memory reads exactly like a real one.</p>
+<p><strong>Where the money actually is.</strong> For most small businesses the answer is the free one, and the reason is not the price. It is that you can open the files and read them. When your agent tells a customer something wrong, you want to look at what it believed and fix that line, which you cannot do inside a hosted vector store.</p>
+<h2>Who Should Steal This Idea</h2>
+<p><strong>Anyone whose agent keeps forgetting the same things.</strong> Your prices, your policies, which clients are difficult, what you decided in March.</p>
+<p><strong>Consultants and agencies.</strong> Everything you know about a client, in files you can hand over or archive when the engagement ends.</p>
+<p><strong>Anyone evaluating a memory vendor right now.</strong> Take the three questions above into the call. The answers separate the real products from the demos quickly.</p>
+<p><strong>Solo operators and small teams.</strong> Markdown wins outright at this size. The collaboration weakness does not apply to you and the token cost is rounding.</p>
+<p><strong>Anyone who got burned by a confident wrong answer.</strong> The planted-question part of this test is the closest thing published to a measurement of that failure.</p>
+<h2>How Hard Is It</h2>
+<p>An afternoon, and most of that is deciding what is worth remembering.</p>
+<p>Point your agent at a folder. Tell it to keep notes there as linked markdown files, one topic per file, and to read the relevant ones before answering anything. Tell it to update a file when it learns something that contradicts what is already written. Keep the folder in a git repo so you get history for free and can see what changed when something goes wrong.</p>
+<p>Then feed it. The files are worthless empty and get useful fast. Your services and prices, your standard policies, the quirks of your regular customers, the decisions you keep re-explaining.</p>
+<p><strong>Cost:</strong> free to run, though expect the model to read more text per question than a purpose-built product would. Budget for that if you are running high volume.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>One topic per file, and link them.</strong> The winning approach is a wiki, not one enormous notes file. The linking is what lets the agent pull only the relevant pages instead of reading everything.</p>
+<p><strong>Make it curate, not just append.</strong> The agent has to rewrite and consolidate its own notes, otherwise you end up with a log that grows forever and contradicts itself in three places.</p>
+<p><strong>Test for invented memories on purpose.</strong> Ask your agent five questions about things you never told it. If it answers confidently rather than saying it does not know, fix that before you let it near a customer.</p>
+<p><strong>Check freshness yourself.</strong> Tell it something, then immediately ask about it. If your setup cannot answer straight away, you have the Zep problem and you need to know that before it matters.</p>
+<p><strong>Keep it in git.</strong> Free version history, and when the agent gets something wrong you can see the exact edit that introduced it.</p>
+<p><strong>Read the files occasionally.</strong> They are plain text, which is the entire advantage. Ten minutes a month reading what your agent believes about your business is the cheapest quality control available.</p>
+<p><strong>If you are high volume, price the tokens before you commit.</strong> The free option cost $568.93 per thousand answers in this test against $341 for the cheapest product. Accuracy went the other way. Pick your side deliberately.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/ai-second-brain-karpathy/">Give Your AI a Second Brain That Gets Smarter Every Day ($0/Month)</a></strong>: The build for the exact approach that won this benchmark, step by step.</li>
+<li><strong><a href="/playbooks/ai-second-brain/">Your AI Remembers Everything So You Don't Have To</a></strong>: The wider case for giving an agent memory at all, if you are still deciding.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this playbook is built on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by Major-Shirt-8227 on Reddit. Credit where it is due — <a href="https://www.reddit.com/r/AI_Agents/comments/1veeix3/i_ran_8_ai_agent_memory_systems_through_2176/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

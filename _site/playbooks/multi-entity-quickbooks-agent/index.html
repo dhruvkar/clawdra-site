@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One AI Now Runs the Books for Six Companies at Once — ClawDrop</title>
+  <meta name="description" content="We wired one AI agent into six separate QuickBooks accounts through Intuit&#39;s official API. Adding the next company is a 2-minute login, not a new build. It&#39;s live now.">
+  <meta property="og:title" content="One AI Now Runs the Books for Six Companies at Once — ClawDrop">
+  <meta property="og:description" content="We wired one AI agent into six separate QuickBooks accounts through Intuit&#39;s official API. Adding the next company is a 2-minute login, not a new build. It&#39;s live now.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/multi-entity-quickbooks-agent/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="One AI Now Runs the Books for Six Companies at Once — ClawDrop">
+  <meta name="twitter:description" content="We wired one AI agent into six separate QuickBooks accounts through Intuit&#39;s official API. Adding the next company is a 2-minute login, not a new build. It&#39;s live now.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/multi-entity-quickbooks-agent/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">July 20, 2026</div>
+    <h1>One AI Now Runs the Books for Six Companies at Once</h1>
+    <p class="post-description">We wired one AI agent into six separate QuickBooks accounts through Intuit&#39;s official API. Adding the next company is a 2-minute login, not a new build. It&#39;s live now.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>~$50/mo (QBO you already pay for plus agent API costs)</strong></span>
+      <span class="meta-badge">⏱ <strong>One weekend to register the app and get production API approval, then ~2 minutes per additional company.</strong></span>
+      <a href="https://clawdrop.org" target="_blank" class="meta-badge">👤 <strong>Claw Drop ↗</strong></a>
+    </div>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: the agent runtime that reads and categorizes transactions across every connected company</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: alternative agent harness for the same setup</li>
+<li><a href="#aff-quickbooks"><strong>QuickBooks Online</strong></a>: the six sets of books the one agent connects to through Intuit's official developer API</li>
+<li><a href="#aff-anthropic"><strong>Anthropic</strong></a>: the model provider doing the actual &quot;what category is this&quot; reasoning</li>
+<li><a href="#aff-xero"><strong>Xero</strong></a>: alternative accounting platform with the same kind of official API if your entities live there instead</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>One AI agent that keeps the books for many separate companies at the same time.</p>
+<p>Not one agent per company. One agent, one connection point, and behind it every set of books you own or manage. In this build it's six: a home-services business, a design and staging studio, and a handful of rental-property LLCs. Each one is a completely separate QuickBooks account with its own login, its own tax ID, and its own pile of uncategorized transactions nobody wants to touch.</p>
+<p>The agent connects to all six through QuickBooks' official developer API. In plain English, that means we don't have a robot pretending to be a human clicking around inside the QuickBooks website. We plugged straight into the door Intuit built for software to talk to QuickBooks directly. It is the difference between a stunt and a machine.</p>
+<p>This one is in production right now. It runs across all six companies. Adding the seventh is a two-minute login, not a new project.</p>
+<h2>The Setup, and Why It Matters</h2>
+<p>There's already a Claw Drop playbook about a CPA who wired her AI into the QuickBooks API to close her own books faster. Great build. If you're a solo accountant, go read it. This is not that.</p>
+<p>This is the version for someone who is drowning in <strong>separate</strong> companies. A person who runs three, four, six little businesses and has a different QuickBooks login for each one. A bookkeeper who does the monthly grind for a dozen clients. The pain isn't &quot;closing one set of books is slow.&quot; The pain is &quot;I have six sets of books and switching between them all month is death by a thousand logins.&quot;</p>
+<p>The old way to solve this with AI would have been ugly. You'd point some browser bot at the QuickBooks website and have it type in a username and password, click through the menus, and hope Intuit didn't change a button. Do that six times, with six logins, and you've built six fragile things that break the first time the site updates. It's a house of cards.</p>
+<p>We didn't do that. We used the front door Intuit actually built for this.</p>
+<h2>The Established Pattern (Said Once, So We Can Move On)</h2>
+<p>The general recipe here is not new, and we're not going to pretend it is: find the official API for the software you already pay for, and put an AI agent on top of it instead of a human. That's the whole move behind half the builds in this newsletter. We covered it in detail with the solo-CPA close.</p>
+<p>What's new is the multiplier. One app. Many companies. Let's talk about the part that actually changes the economics.</p>
+<h2>The Real Unlock: One App, Many Companies</h2>
+<p>Here's the piece that makes this worth your weekend.</p>
+<p>When you connect to QuickBooks the official way, you register <strong>one</strong> application with Intuit. Think of it like getting one master key cut. That one app is not tied to one company's books. It's a connector that any QuickBooks account can plug into.</p>
+<p>So the flow looks like this. You build the connector once. Then each company logs in through the same little &quot;Connect to QuickBooks&quot; page, one time, with its own QuickBooks account. The home-services business logs in. The staging studio logs in. Each rental LLC logs in. Every one of them clicks &quot;allow&quot; once, and now your single agent can read and work all six sets of books.</p>
+<p>Adding the next company is not a new build. It's not new code. It's someone logging in through the same page you already made and clicking one button. About two minutes.</p>
+<p>That's the whole game. Most people assume &quot;connect AI to QuickBooks&quot; is a one-company-at-a-time chore, so running six businesses means six of everything. It doesn't. It means one connector and six two-minute logins. A single agent now runs six companies' books, and the marginal cost of the seventh is basically zero.</p>
+<p>If you're a bookkeeper, read that paragraph again. Your entire client list can sit behind one agent. Onboarding a new client stops being a setup project and becomes a login link you send them.</p>
+<h2>How We Actually Wired It Up</h2>
+<p>Here's the honest walkthrough, minus the jargon. This is the part that takes a weekend the first time and ten minutes the second.</p>
+<h3>1. Register one app with Intuit</h3>
+<p>You go to developer.intuit.com and create an application. This is you telling Intuit &quot;I'm building software that's going to talk to QuickBooks.&quot; They hand you two things: a client ID and a client secret. Think of those as the username and password for your connector itself, separate from any individual company's login.</p>
+<h3>2. Get approved for the real thing</h3>
+<p>This is the step people trip on, so pay attention. When you first register, Intuit only gives you &quot;sandbox&quot; access. Sandbox is a fake practice company with fake numbers. It's great for testing and completely useless for real books.</p>
+<p>To touch actual live QuickBooks accounts, you have to apply for <strong>production</strong> credentials. There's a short compliance and onboarding application. You fill out what your app does, how it uses the data, and you wait for approval. This is not hard, but it is a gate, and you cannot skip it. Budget a little lead time because a human at Intuit reviews it.</p>
+<p>We did this. We got approved. The six companies are live production accounts, not test data.</p>
+<h3>3. Wire the login handshake</h3>
+<p>This is the &quot;Connect to QuickBooks&quot; page. In technical terms it's an OAuth flow with a redirect and a callback page. In plain terms it's the same &quot;Sign in with Google&quot; style button you've clicked a hundred times on other websites. The company clicks it, logs into their own QuickBooks, approves access, and gets bounced back. Done. That approval is what lets one company plug into your one app.</p>
+<p>You set this up once. Then every new company reuses it.</p>
+<h3>4. Prove the connection works</h3>
+<p>Before trusting it with anything, we did the simplest possible sanity check: we asked it to pull the last five transactions out of QuickBooks and show them to us. They came back correct. That's how you know the pipe is real. Boring, but that boring test is the difference between &quot;I think it's connected&quot; and &quot;it's connected.&quot;</p>
+<h2>The Human-in-the-Loop Dry Run (Nothing Touches the Books Uninvited)</h2>
+<p>Here's the part that should make you comfortable, because the number one fear with anything near your books is &quot;what if the AI screws up my numbers.&quot;</p>
+<p>It can't, because we don't let it write anything until a human says yes.</p>
+<p>The agent works in a review-first mode. It pulls the uncategorized transactions and, for each one, drops its best guess into a spreadsheet. One column has the transaction. The next column has the category the agent thinks it belongs in. The next column literally asks, &quot;does this look right?&quot;</p>
+<p>The owner sits down with that sheet and does a fast pass. Approve the batch, or fix the ones that are wrong. That's it. The agent watches the corrections, learns the patterns for that specific business, and gets sharper the next time.</p>
+<p>And nothing, not a single entry, gets written back into QuickBooks until it's approved. The AI proposes. The human disposes. The books stay clean because a person still signs off, they just aren't the one doing the mind-numbing sorting anymore.</p>
+<p>For six companies, that's six review sheets instead of six full days of manual categorizing. The owner's job shifts from &quot;do the work&quot; to &quot;check the work,&quot; which is a much shorter job.</p>
+<h2>The Money</h2>
+<p>Here's why this exists.</p>
+<p>Categorizing transactions by hand runs about <strong>10 hours a month per company</strong>. Six companies is roughly 60 hours a month of somebody clicking dropdowns in QuickBooks. That's a part-time job that produces nothing but tidy books.</p>
+<p>With the agent proposing and a human approving, that 10 hours per company drops to about <strong>1 hour</strong>. Same six companies now cost about six hours of review a month instead of sixty. You just got a week of your life back every month.</p>
+<p>But the real target is bigger. This operator was paying a full-service CPA firm about <strong>$2,500 a month</strong> to keep all this straight. Most of what that firm was billing for was the grind: the categorizing, the cleanup, the monthly bookkeeping. Once the agent handles the grind and a human approves it, you don't need a full-service firm anymore. You need a cheap tax-only accountant who files the returns at year end.</p>
+<p>Do that math. Twenty-five hundred a month is thirty grand a year. Swap it for a tax-only firm at a few hundred a month plus maybe fifty bucks in agent costs, and you're keeping most of that thirty grand. The bookkeeping labor didn't move offshore. It moved into an agent that works for pennies and a human who just checks the output.</p>
+<p>That's the wedge. Automate the categorizing, retire the expensive full-service firm, keep a cheap tax specialist for the one thing that actually needs a licensed human.</p>
+<h2>Who Should Steal This Idea</h2>
+<p><strong>The multi-business operator.</strong> If you own three, four, or more little companies, each with its own QuickBooks and its own tax ID, this is built for you. One agent, one connector, every entity behind it. Rental LLCs, side businesses, a main operating company, whatever you've got.</p>
+<p><strong>The bookkeeper.</strong> This is your whole business model, made leaner. Every client's books behind one agent. Onboarding a new client is a login link, not a setup week. You can take on more clients without hiring, because the categorizing grind stops scaling with your headcount.</p>
+<p><strong>Anyone paying a full-service firm mostly for bookkeeping.</strong> If your monthly accounting bill is really a bookkeeping bill with a little tax work stapled on, you're overpaying. The bookkeeping part is exactly what this replaces.</p>
+<p><strong>Franchise and property groups.</strong> Multiple locations or properties, each its own set of books, one owner who wants a single view. Same shape as the six-company build here.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>The production approval is a real gate, so start it early.</strong> Sandbox access is instant and useless for live books. Production access needs Intuit's compliance application and a human review. Apply for it at the beginning of your weekend, not the end, so you're not stuck waiting with everything else built.</p>
+<p><strong>One app, but each company still logs in itself.</strong> Don't try to shortcut the per-company login. That one-time &quot;Connect to QuickBooks&quot; click by each entity is what keeps every set of books properly separated and consented. It's a feature, not a hassle. It's also what makes adding company number seven a two-minute job.</p>
+<p><strong>Keep write access off until you trust it.</strong> Run the review-sheet dry run for a full cycle or two before you ever let the agent post back into QuickBooks. Read everything, write nothing, until the guesses are boringly correct. Then turn on write access to a draft batch you still approve.</p>
+<p><strong>Keep a notes file per company.</strong> Each business has its own quirks: this vendor is always &quot;supplies,&quot; that recurring charge is always &quot;software,&quot; the owner's personal card purchases need flagging. Write those rules down per company. The agent reads them before every pass and stops making the same mistake twice.</p>
+<p><strong>Don't skip the five-transaction test on new companies.</strong> Every time you connect a new entity, pull its last five transactions first. It's ten seconds and it confirms the pipe is real before you build anything on top of it.</p>
+<hr>
+<h2>Keep Reading</h2>
+<ul>
+<li><strong><a href="/playbooks/cpa-quickbooks-monthly-close/">This Accountant Trained Her AI to Close the Books Every Month</a></strong>: The single-practice version of this idea. Where this playbook is about running many separate companies, that one is a solo CPA getting her own monthly close down to a one-shot.</li>
+<li><strong><a href="/playbooks/founder-runs-business-on-ai/">Run Your Business on AI (While Living Your Life)</a></strong>: The bigger picture for any multi-business owner. What it looks like when AI handles the operational grind and you handle the decisions.</li>
+<li><strong><a href="/playbooks/nex-crm/">Replace Your CRM With a Conversation</a></strong>: Same official-API move, different software. Take the tool you already pay for, plug an agent into its front door, and run it from one place.</li>
+</ul>
+<p><strong>Want the full deep dive?</strong> Read our <a href="/learn/best-openclaw-skills/">Best OpenClaw Skills</a> guide for the foundational patterns this build depends on.</p>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -6,7 +6,6 @@ date: 2026-04-01
 difficulty: Intermediate
 cost: "$20-50/month (API costs + optional scheduling tools)"
 timeToSetup: "4-6 hours across a weekend"
-originalSource: "https://clawdrop.org"
 originalAuthor: "ClawDrop"
 issueNumber: 6
 permalink: /playbooks/newsletter-growth-machine/
