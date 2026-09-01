@@ -18,6 +18,11 @@ const GHL_VERSION = "2021-07-28";
 const USER_AGENT = "clawdrop-site/1.0 (+https://clawdrop.org)";
 const TAG = "seo-audit-request";
 const SPAM_TAG = "possible-spam";
+// Requesting an inspection also subscribes them. `newsletter` is the tag the
+// existing 1,360 subscribers carry, so these land in the same audience rather
+// than a parallel one. `source` deliberately stays the audit page, so where a
+// contact came from is still readable after the fact.
+const NEWSLETTER_TAG = "newsletter";
 const SOURCE = "clawdrop.org - AI SEO Audit";
 
 const SUCCESS_URL = "/audit-requested/";
@@ -150,7 +155,9 @@ export default async (req) => {
   // or a note is not worth showing this person an error page.
   const tagRes = await ghlFetch(`/contacts/${contactId}/tags`, {
     method: "POST",
-    body: JSON.stringify({ tags: trapped ? [TAG, SPAM_TAG] : [TAG] }),
+    body: JSON.stringify({
+      tags: trapped ? [TAG, SPAM_TAG, NEWSLETTER_TAG] : [TAG, NEWSLETTER_TAG],
+    }),
   });
   if (!tagRes.ok) console.error("seo-audit: tag failed", tagRes.error, contactId);
 
