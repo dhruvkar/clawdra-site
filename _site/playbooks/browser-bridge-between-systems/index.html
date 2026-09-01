@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Websites That Will Never Talk to Each Other. He Built the Bridge in an Afternoon. — ClawDrop</title>
+  <meta name="description" content="Somebody in your business is a human API, moving the same data between a supplier portal and your own system all day. Check the network tab first, then let Claude drive the browser.">
+  <meta property="og:title" content="Two Websites That Will Never Talk to Each Other. He Built the Bridge in an Afternoon. — ClawDrop">
+  <meta property="og:description" content="Somebody in your business is a human API, moving the same data between a supplier portal and your own system all day. Check the network tab first, then let Claude drive the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/browser-bridge-between-systems/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Two Websites That Will Never Talk to Each Other. He Built the Bridge in an Afternoon. — ClawDrop">
+  <meta name="twitter:description" content="Somebody in your business is a human API, moving the same data between a supplier portal and your own system all day. Check the network tab first, then let Claude drive the browser.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/browser-bridge-between-systems/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 10px 14px; font-size: 0.8rem; }
+      nav .container-wide { gap: 12px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/ai-seo-audit/" class="nav-link">AI SEO Audit</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 31, 2026</div>
+    <h1>Two Websites That Will Never Talk to Each Other. He Built the Bridge in an Afternoon.</h1>
+    <p class="post-description">Somebody in your business is a human API, moving the same data between a supplier portal and your own system all day. Check the network tab first, then let Claude drive the browser.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Beginner</strong></span>
+      <span class="meta-badge">💰 <strong>Free if you have a paid Claude plan. Claude in Chrome is included.</strong></span>
+      <span class="meta-badge">⏱ <strong>An hour to describe it. A day if you end up writing an extension.</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who">u/One_Bumblebee_3189 (r/smallbusiness)<span></span></span>
+      </div>
+      <a href="https://www.reddit.com/r/smallbusiness/comments/1vzxjcz/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-claude"><strong>Claude</strong></a>: drives the browser. The Chrome extension comes with any paid plan</li>
+<li><a href="#aff-claude-code"><strong>Claude Code</strong></a>: for the version you keep, once the steps stop changing</li>
+<li><a href="#aff-google-sheets"><strong>Google Sheets</strong></a>: the middleman when both sites do CSV</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: runs it on a schedule once it works</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>Something that reads one website and fills in another.</p>
+<p>Pull the order off the supplier portal. Type it into your system. Submit it. Log it in the sheet. Do that forty times a day without a person doing it.</p>
+<h2>The Story</h2>
+<p>A guy built Chrome extensions for his father's business.</p>
+<p>Not because he wanted to build software. Because a large part of his father's day was moving information between websites that have no way of talking to each other. So the extension pulls what it needs off one page, fills in the form on the next site, submits it, writes the result somewhere else, and builds a report across all of them.</p>
+<p>His observation is the one that matters:</p>
+<blockquote>
+<p>It also made me realize how many businesses probably have processes that don't fit neatly into Zapier/Make/API-based automation because the websites involved simply don't offer integrations.</p>
+</blockquote>
+<p>That is most small businesses.</p>
+<p>The supplier portal. The state licensing site. The insurance carrier. The freight portal. The manufacturer's warranty system. None of them will ever build an integration for a nine person company.</p>
+<p>So somebody in that business becomes the integration. Usually it is the owner, or the one person who knows the system.</p>
+<p>Another commenter had run exactly this at an insurance brokerage. They could not integrate with most of the carriers, so their extensions pulled data off a Salesforce page and pasted it into carrier application forms. For small group benefits the carrier sites allowed spreadsheet uploads, so they built their own translator between each site's format.</p>
+<p>Two different businesses. Same fix.</p>
+<h2>Check The Network Tab First</h2>
+<p>Before you automate anything, open the site and press F12.</p>
+<p>A commenter on the thread gave the best advice in the whole thread, and almost no owner has heard it. Most sites that &quot;have no integration&quot; are still calling a JSON API under the hood every time you click something. You can see it happening in the network tab while you use the site normally.</p>
+<p>If it is there, hit it directly. It is faster and far more reliable than driving a browser.</p>
+<p>&quot;No integration&quot; nearly always means &quot;no documented integration.&quot; Those are different problems.</p>
+<h2>The Business Angle</h2>
+<p>Price the person doing it now.</p>
+<p>Half a day a week of data entry at $22 an hour is about $5,700 a year. Two people doing it is $11,000. And it is the work that makes good staff quit, because it is the least interesting hour of their day and they know it.</p>
+<p>Claude in Chrome is included with a paid Claude plan you may already have. Nine million people installed it in the beta. Somebody timed it editing a Salesforce record end to end at under 40 seconds against three to four minutes doing it by hand.</p>
+<p>So the first version of this costs nothing. You describe the job in plain English and watch it work.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Insurance agencies, brokers, freight and logistics, medical billing, anyone dealing with a manufacturer portal, anyone filing on a government site every month.</p>
+<p>If a person in your business has two tabs open and is looking back and forth between them, that is the one.</p>
+<h2>How Hard Is It</h2>
+<p>Set it up in an afternoon.</p>
+<p>Go up the ladder only as far as you need:</p>
+<ol>
+<li>Check the network tab. If there is an API, use it and stop here.</li>
+<li>If both sites do spreadsheet import and export, use that. Boring and it never breaks.</li>
+<li>Describe the job to Claude in Chrome. No code.</li>
+<li>Write a real extension only when it runs constantly and has to survive logins.</li>
+</ol>
+<p>Cost: nothing to start.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>It will break, so plan for that instead of being surprised.</strong> When a site redesigns, everything pointed at it stops working. The industry number for fixing one of these is 4 to 16 hours of developer time, one to three times a year per portal. An automation that saves five hours a week easily survives that. Owners abandon these because the first break feels like proof it does not work.</p>
+<p><strong>Decide what this is before you build it.</strong> One person's convenience, or the path your quotes and invoices actually travel. If it is the second one, you want a real record those sites write into, even if version one is ugly. As one commenter put it, browser automation is a fine bridge and a bad place to park the company's truth.</p>
+<p><strong>Spreadsheets in the middle work until two people edit at once.</strong> Then they stop working, quietly, and you find out from a customer.</p>
+<p><strong>These run inside your logged-in accounts.</strong> Keep it on the machine and the browser profile of whoever owns those logins. Do not hand a portal password to a hosted service to save an hour.</p>
+<p><strong>Two factor auth will stop it.</strong> Anything unattended will hit an MFA wall eventually. Build it so a human is around, or so it stops and asks.</p>
+<p><strong>Write the steps down.</strong> The extension is not the asset. The list of what happens in what order is the asset, and it is what lets anybody rebuild this in an hour when the site changes.</p>
+<h2>Keep Reading</h2>
+<ul>
+<li><a href="/playbooks/vertical-software-gap-filler/">Working Around the Industry Software You Can't Replace</a></li>
+<li><a href="/playbooks/real-scraping-stack/">Turn Any Windows PC Into a Web Automation Machine</a></li>
+<li><a href="/playbooks/cua-driver/">Your AI Can Now Run Your Mac in the Background. Without Stealing Your Mouse.</a></li>
+</ul>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by u/One_Bumblebee_3189 (r/smallbusiness). Credit where it is due — <a href="https://www.reddit.com/r/smallbusiness/comments/1vzxjcz/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

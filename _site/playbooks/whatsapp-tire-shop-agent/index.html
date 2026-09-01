@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Customer Sends a Photo of a Tire. The Shop Sends Back a Price and Holds the Stock. — ClawDrop</title>
+  <meta name="description" content="A tire shop runs its whole sales counter over WhatsApp. Photo of the sidewall, voice note, or 2017 Chevy Onix all turn into a priced offer with the stock reserved. The operators who reviewed it explain how to stop an agent giving your margin away.">
+  <meta property="og:title" content="A Customer Sends a Photo of a Tire. The Shop Sends Back a Price and Holds the Stock. — ClawDrop">
+  <meta property="og:description" content="A tire shop runs its whole sales counter over WhatsApp. Photo of the sidewall, voice note, or 2017 Chevy Onix all turn into a priced offer with the stock reserved. The operators who reviewed it explain how to stop an agent giving your margin away.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/playbooks/whatsapp-tire-shop-agent/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="A Customer Sends a Photo of a Tire. The Shop Sends Back a Price and Holds the Stock. — ClawDrop">
+  <meta name="twitter:description" content="A tire shop runs its whole sales counter over WhatsApp. Photo of the sidewall, voice note, or 2017 Chevy Onix all turn into a priced offer with the stock reserved. The operators who reviewed it explain how to stop an agent giving your margin away.">
+  <link rel="canonical" href="https://clawdrop.org/playbooks/whatsapp-tire-shop-agent/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 10px 14px; font-size: 0.8rem; }
+      nav .container-wide { gap: 12px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .post { max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .post-back { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .post-back:hover { color: var(--accent-hover); }
+  .post-date { color: var(--ink-mute); font-size: 0.82rem; margin-top: 16px; }
+  .post h1 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 16px; color: var(--ink); }
+  .post-description { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 28px; font-weight: 400; }
+  .post-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule); }
+  .meta-badge { font-size: 0.78rem; padding: 7px 14px; border-radius: 100px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+  .meta-badge strong { color: var(--ink); font-weight: 600; }
+  a.meta-badge { text-decoration: none; transition: all 0.2s; }
+  a.meta-badge:hover { border-color: var(--accent); color: var(--accent); }
+  a.meta-badge:hover strong { color: var(--accent); }
+
+  .source-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    background: var(--accent-soft); border: 1px solid var(--accent); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 16px 20px; margin: -14px 0 34px; }
+  .source-card .source-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .source-card .source-label { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); }
+  .source-card .source-who { font-size: 0.95rem; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  .source-card .source-who span { font-weight: 400; color: var(--ink-soft); }
+  .btn-source { display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    white-space: nowrap; transition: all 0.2s; }
+  .btn-source:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+  @media (max-width: 540px) { .source-card { flex-direction: column; align-items: flex-start; } .btn-source { width: 100%; justify-content: center; } }
+
+  .source-footer { margin-top: 44px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px;
+    background: var(--warm); font-size: 0.9rem; color: var(--ink-soft); }
+  .source-footer a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .source-footer a:hover { text-decoration: underline; }
+
+  .post-content h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; margin-top: 44px; margin-bottom: 14px; letter-spacing: -0.015em; color: var(--ink); }
+  .post-content h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px; color: var(--ink); }
+  .post-content p { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; }
+  .post-content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .post-content a:hover { color: var(--accent-hover); }
+  .post-content ul, .post-content ol { color: var(--ink); font-size: 1rem; line-height: 1.75; margin-bottom: 18px; padding-left: 24px; }
+  .post-content li { margin-bottom: 6px; }
+  .post-content blockquote { border-left: 3px solid var(--accent); padding: 14px 22px; margin: 22px 0; background: var(--warm); border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .post-content img { max-width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid var(--rule); }
+
+  /* Stripe-style dark code blocks on cream background */
+  .post-content code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'JetBrains Mono', monospace; color: var(--code-accent); }
+  .post-content pre { background: var(--code-bg); border-radius: 10px; padding: 20px 22px; overflow-x: auto; margin: 22px 0; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); }
+  .post-content pre code { background: none; padding: 0; font-size: 0.86rem; color: var(--code-text); line-height: 1.7; }
+  .post-content strong { color: var(--ink); font-weight: 700; }
+
+  .post-content table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 0.92rem; }
+  .post-content th { text-align: left; padding: 11px 14px; background: var(--warm); border-bottom: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; font-size: 0.82rem; }
+  .post-content td { padding: 11px 14px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+
+  .playbook-cta { background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 30px 28px; margin: 44px 0; text-align: center; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .playbook-cta h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 6px; color: var(--ink); }
+  .playbook-cta p { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 18px; }
+  .playbook-cta .form-iframe-wrap { height: 380px; overflow: hidden; border-radius: 10px; }
+  .playbook-cta .form-iframe-wrap iframe { height: 500px !important; width: 100% !important; border: none; }
+
+  .post-footer { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--rule); text-align: center; }
+  .post-footer p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+  .btn-cta:hover { background: var(--accent-hover); transform: translateY(-1px); color: white; }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/ai-seo-audit/" class="nav-link">AI SEO Audit</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <article class="post">
+    <a href="/playbooks/" class="post-back">← All Playbooks</a>
+    <div class="post-date">August 31, 2026</div>
+    <h1>A Customer Sends a Photo of a Tire. The Shop Sends Back a Price and Holds the Stock.</h1>
+    <p class="post-description">A tire shop runs its whole sales counter over WhatsApp. Photo of the sidewall, voice note, or 2017 Chevy Onix all turn into a priced offer with the stock reserved. The operators who reviewed it explain how to stop an agent giving your margin away.</p>
+    <div class="post-meta-grid">
+      <span class="meta-badge">⚡ <strong>Intermediate</strong></span>
+      <span class="meta-badge">💰 <strong>Roughly $50-150/mo. WhatsApp service replies are free, you pay for the AI and the hosting.</strong></span>
+      <span class="meta-badge">⏱ <strong>A weekend for the happy path. A month before you trust it with pricing.</strong></span>
+      
+    </div>
+    
+    <aside class="source-card">
+      <div class="source-copy">
+        <span class="source-label">🔗 Original post</span>
+        <span class="source-who">u/LifeInternational674 (r/n8n)<span></span></span>
+      </div>
+      <a href="https://www.reddit.com/r/n8n/comments/1vfh681/" target="_blank" rel="noopener" class="btn-source">Read the original ↗</a>
+    </aside>
+    
+    <div class="post-content" id="post-content">
+      <h2>Tools</h2>
+<ul>
+<li><a href="#aff-whatsapp"><strong>WhatsApp</strong></a>: where the customer already is. Use the official Business API</li>
+<li><a href="#aff-claude"><strong>Claude</strong></a>: reads the photo, hears the voice note, writes the reply</li>
+<li><a href="#aff-google-sheets"><strong>Google Sheets</strong></a>: the stock list. The shop already worked here, so it stayed here</li>
+<li><a href="#aff-n8n"><strong>n8n</strong></a>: the wiring between the message and the tools</li>
+<li><a href="#aff-openclaw"><strong>OpenClaw</strong></a>: does the same job if you would rather run one agent than a flowchart</li>
+</ul>
+<h2>What You'll Build</h2>
+<p>A sales counter that answers WhatsApp at 9pm.</p>
+<p>Somebody sends a photo of the writing on their tire. The agent works out the size, checks what is actually on the shelf, sends back a price, answers the haggling, reserves the stock, and tells you in the team group.</p>
+<p>When it does not know, it stops and asks a human. When a human answers, it gets out of the way.</p>
+<h2>The Story</h2>
+<p>A tire shop in Brazil. Every customer message arrives on WhatsApp, and almost none of them arrive clean.</p>
+<p>Some people send the size, <code>195/65 R15</code>. Some send &quot;2017 Chevy Onix&quot; and expect you to know. Some send a blurry photo of the sidewall taken in a dark garage. Some send a voice note.</p>
+<p>The agent handles all four.</p>
+<p>From there it checks real stock and builds a priced offer. Then it negotiates, because customers negotiate. How much in three installments. What if I take four. It re-checks quantity against stock before it commits to anything, builds the order summary, asks the customer to confirm, reserves the stock, works out whether there is time to fit them today or it needs a booking, and posts the order to the shop's team group.</p>
+<p>The inventory lives in a Google Sheet.</p>
+<p>That is the decision worth copying. The builder did not move the shop onto a new system. He read the sheet the staff were already updating, and left them alone.</p>
+<h2>When It Does Not Know, It Raises Its Hand</h2>
+<p>Unknown size. Price outside the table. Anything strange.</p>
+<p>The agent opens a pending request, pings the team's WhatsApp group, and stops talking. The manager answers in the group like a normal person. That answer routes back into the customer's chat automatically.</p>
+<p>And if any human replies from the shop's own phone, the bot switches itself off for that conversation.</p>
+<p>The builder's summary of it was that the agent knows how to escalate and then get out of the way.</p>
+<h2>The Business Angle</h2>
+<p>A counter person costs $2,500 to $4,000 a month and goes home at six.</p>
+<p>The messages do not go home at six. A tire shop's customers text in the evening, after they have looked at the flat, and they buy from whoever answers first.</p>
+<p>This build covers the evenings and the queue at 11am when two people are already at the counter. The shop keeps its staff and stops losing the messages nobody had hands for.</p>
+<p>Worth knowing on the bill: Meta changed WhatsApp pricing on July 1st 2025 and now charges per message. Conversations the customer starts are free, 1,000 a month per account and free after that. So the inbound sales case here costs you almost nothing in message fees. You only pay when you send marketing.</p>
+<h2>Who Should Steal This Idea</h2>
+<p>Any shop that sells a thing with a size, a fitment, or a spec. Tires, parts, glass, filters, blinds, flooring, paint.</p>
+<p>Also anyone taking orders on WhatsApp and typing them into a system afterwards.</p>
+<h2>How Hard Is It</h2>
+<p>Needs a developer, but just once.</p>
+<p>Cost: roughly $50-150 a month once it is live. Most of that is AI usage and a small server.</p>
+<h2>Gotchas and Tips</h2>
+<p><strong>Never let the model near a number.</strong> This is the single most important line in the whole build. Prices, totals, stock counts and discounts come from your code. An agent that negotiates will eventually hand out a discount nobody approved, and you will hear about it from the customer, not from your logs.</p>
+<p><strong>Hide the tools it is not allowed to use yet.</strong> Filter the tool list by where the conversation is. Early on it should only be able to look up a vehicle. Rejecting a bad tool call after the fact still burns a turn, and the model will argue with the rejection.</p>
+<p><strong>Strip old totals out of the history.</strong> Once a price appears in something the model wrote, it is in the context next turn. Three turns later it will negotiate from that stale number even though your tool would return a different one. Recompute the whole offer whenever the item, the quantity or the payment method changes.</p>
+<p><strong>Your tests are lying to you.</strong> One operator ran the same script repeatedly and a cheap model handed out an unauthorized discount roughly one run in three. A single green test would have shipped that. Run each scary case ten times and look at the failure rate.</p>
+<p><strong>Make refusing an action it can take.</strong> Prompting a model to never offer a discount holds for about a week. Give it a real escalate tool so that declining is a button it presses. Otherwise it says &quot;let me see what I can do for you&quot; and the customer holds you to a discount that never existed.</p>
+<p><strong>Use the official WhatsApp API.</strong> The build in the original post runs on an unofficial one that emulates WhatsApp Web. It is free and it works, and it also breaks WhatsApp's terms. Bans are usually permanent and take the chat history and contacts with them. For a shop whose customers only reach them one way, that is the business.</p>
+<h2>Keep Reading</h2>
+<ul>
+<li><a href="/playbooks/whatsapp-appointment-faq-agent/">Put an Agent on Your WhatsApp to Book Appointments and Answer the Same 20 Questions</a></li>
+<li><a href="/playbooks/ai-front-desk/">The Four-Piece AI Front Desk Every SMB Should Have Running by Friday</a></li>
+<li><a href="/playbooks/reversible-irreversible-gate/">Let It Do Anything You Can Undo. Make It Ask for Everything Else.</a></li>
+</ul>
+
+    </div>
+    <script>
+    (function() {
+      var cta = document.createElement('div');
+      cta.className = 'playbook-cta';
+      cta.innerHTML = '<h3>Get playbooks like this in your inbox every Tuesday.</h3>' +
+        '<p>Real automations from real owners. No hype, no fluff.</p>' +
+        '<div class="form-iframe-wrap">' +
+        '<iframe src="https://api.leadconnectorhq.com/widget/form/OsR6NKbHoc4IUYG5phIa" ' +
+        'style="width:100%;border:none;" scrolling="no" ' +
+        'data-layout="{\'id\':\'INLINE\'}" data-trigger-type="alwaysShow" ' +
+        'data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" ' +
+        'data-form-name="Newsletter Signup" data-height="340" ' +
+        'data-layout-iframe-id="inline-pb-OsR6NKbHoc4IUYG5phIa" ' +
+        'data-form-id="OsR6NKbHoc4IUYG5phIa" title="Newsletter Signup"></iframe></div>';
+      var headings = document.querySelectorAll('#post-content h2');
+      var target = headings.length >= 4 ? headings[3] : (headings.length >= 2 ? headings[Math.floor(headings.length / 2)] : null);
+      if (target) { target.parentNode.insertBefore(cta, target); }
+      var s = document.createElement('script');
+      s.src = 'https://link.msgsndr.com/js/form_embed.js';
+      document.body.appendChild(s);
+    })();
+    </script>
+    
+    <div class="source-footer">
+      🔗 This playbook is our write-up of a build shared by u/LifeInternational674 (r/n8n). Credit where it is due — <a href="https://www.reddit.com/r/n8n/comments/1vfh681/" target="_blank" rel="noopener">read the original ↗</a>
+    </div>
+    
+    <div class="post-footer">
+      <p>Have a build to share? We'd love to feature it.</p>
+      <a href="/submit/" class="btn-cta">Submit your build →</a>
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -55,6 +55,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://clawdrop.org/playbooks/browser-bridge-between-systems/</loc>
+    <lastmod>August 31, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clawdrop.org/playbooks/handwritten-estimate-to-crm/</loc>
+    <lastmod>August 31, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clawdrop.org/playbooks/no-show-reconfirm-loop/</loc>
+    <lastmod>August 31, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://clawdrop.org/playbooks/open-source-ai-c-suite/</loc>
     <lastmod>August 31, 2026</lastmod>
     <changefreq>monthly</changefreq>
