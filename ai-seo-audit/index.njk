@@ -59,6 +59,7 @@ permalink: /ai-seo-audit/
   .submit-btn:hover { background: var(--accent); }
   .form-tiny { margin-top: 14px; font-size: 0.78rem; color: var(--ink-mute); text-align: center; }
   .hp { position: absolute; left: -9999px; }
+  .form-error { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 18px; font-size: 0.95rem; color: var(--ink); }
 
   .fineprint { font-size: 0.85rem; color: var(--ink-mute); line-height: 1.65; border-top: 1px solid var(--rule); margin-top: 48px; padding-top: 18px; max-width: none; }
 
@@ -138,11 +139,11 @@ permalink: /ai-seo-audit/
   <p class="guarantee"><b>If we don't find at least five real problems across your site and listings, you don't pay.</b> No invoice, no half price. So far we haven't come close.</p>
 
   <div class="form-card">
+    <p class="form-error" id="form-error" hidden>Something went wrong sending that. Email <a href="mailto:dhruv@clawdrop.org">dhruv@clawdrop.org</a> with your website address and I'll pick it up from there.</p>
     <h3>Send me your website</h3>
     <p class="sub">I'll tell you what I find. No contract, no monthly fee, no obligation to hire us for the fixes.</p>
-    <form name="seo-audit" method="POST" data-netlify="true" netlify-honeypot="company-fax" action="/thank-you/">
-      <input type="hidden" name="form-name" value="seo-audit">
-      <p class="hp"><label>Leave this empty: <input name="company-fax"></label></p>
+    <form name="seo-audit" method="POST" action="/api/seo-audit">
+      <p class="hp"><label>Leave this empty: <input name="company-fax" tabindex="-1" autocomplete="off"></label></p>
       <div class="row2">
         <div class="field">
           <label for="a-name">Your name</label>
@@ -175,6 +176,13 @@ permalink: /ai-seo-audit/
       <p class="form-tiny">We reply within one business day. Your details aren't shared or sold.</p>
     </form>
   </div>
+
+  <script>
+    if (new URLSearchParams(location.search).has('error')) {
+      var el = document.getElementById('form-error');
+      if (el) { el.hidden = false; el.scrollIntoView({ block: 'center' }); }
+    }
+  </script>
 
   <p class="fineprint">Straight talk on timing: anything blocking AI from reading your site, and any listing that's wrong, stops costing you the day it's fixed. Content and review work usually takes 60 to 90 days to show up in your numbers. Sources for the figures above, available on request: BrightEdge AI Overview tracking (March 2026); the Yelp and BBB citation shares are from Foundation Marketing and AirOps, who counted 318 million citations across 28.5 million AI answers (published May 2026).</p>
 

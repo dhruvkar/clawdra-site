@@ -1,4 +1,7 @@
 module.exports = function(eleventyConfig) {
+  // Serverless functions are built by Netlify, not Eleventy.
+  eleventyConfig.ignores.add("netlify/**");
+
   // Passthrough copy for existing static pages and assets
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("submit");

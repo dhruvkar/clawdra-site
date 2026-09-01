@@ -1,6 +1,7 @@
 [build]
   command = "npx @11ty/eleventy"
   publish = "_site"
+  functions = "netlify/functions"
 
 # Legacy /blueprints/ → /playbooks/ (renamed Apr 2026)
 [[redirects]]
