@@ -67,10 +67,21 @@
   to = "https://www.inboxkit.com/?aff=kzfCVuvZDa8H"
   status = 302
 
+# HTML must revalidate. The previous blanket max-age=3600 meant a visitor
+# could hold an hour-old copy of a page, and a form whose action had since
+# changed would POST to the old target and 404 with the lead lost. ETags still
+# make this cheap: unchanged pages come back as a 304, not a re-download.
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fingerprint-free static assets can still cache hard; they change rarely and
+# are replaced by name when they do.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
