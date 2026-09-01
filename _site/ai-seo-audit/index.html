@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI SEO Audit — ClawDrop</title>
+  <meta name="description" content="We inspect your website and every listing with your name on it, and tell you whether ChatGPT hands out your number when a homeowner nearby asks for someone in your trade. $750, credited back if we do the fixes.">
+  <meta property="og:title" content="AI SEO Audit — ClawDrop">
+  <meta property="og:description" content="We inspect your website and every listing with your name on it, and tell you whether ChatGPT hands out your number when a homeowner nearby asks for someone in your trade. $750, credited back if we do the fixes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/ai-seo-audit/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI SEO Audit — ClawDrop">
+  <meta name="twitter:description" content="We inspect your website and every listing with your name on it, and tell you whether ChatGPT hands out your number when a homeowner nearby asks for someone in your trade. $750, credited back if we do the fixes.">
+  <link rel="canonical" href="https://clawdrop.org/ai-seo-audit/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 10px 14px; font-size: 0.8rem; }
+      nav .container-wide { gap: 12px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
+
+    
+  .offer { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  .offer-flag { font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px; }
+  .offer h1 { font-family: 'Fraunces', serif; font-size: clamp(2.1rem, 5vw, 3.1rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.06; color: var(--ink); margin-bottom: 20px; }
+  .offer-lede { font-size: 1.12rem; color: var(--ink-soft); line-height: 1.65; max-width: 54ch; }
+
+  .offer h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); margin: 52px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .offer p { font-size: 1rem; line-height: 1.75; margin-bottom: 16px; max-width: 62ch; }
+
+  .pull { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; line-height: 1.35; color: var(--ink); background: var(--warm); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 24px 0; max-width: none; }
+
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+  .checks li { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+  .checks li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .checks .mark { font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--accent); line-height: 1.6; }
+  .checks .mark.no { color: var(--ink-mute); }
+  .checks b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+  .checks span.sub { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; display: block; }
+  .checks span.sub em { font-style: normal; color: var(--ink); font-weight: 600; }
+
+  .evidence { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 24px 26px; margin: 22px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.83rem; line-height: 1.75; box-shadow: 0 4px 14px rgba(21, 36, 61, 0.08); overflow-x: auto; }
+  .evidence .head { color: #8fa3bd; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid #2c3d59; padding-bottom: 10px; margin-bottom: 14px; }
+  .evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .evidence li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+  .evidence .x { color: var(--code-accent); }
+  .caption { color: var(--ink-mute); font-size: 0.92rem; font-style: italic; }
+
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: step; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; font-size: 1rem; line-height: 1.7; }
+  .steps li::before { counter-increment: step; content: counter(step); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; color: #fff; background: var(--ink); width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; margin-top: 3px; }
+
+  .price-card { background: var(--paper); border: 1px solid var(--rule-strong); border-radius: 16px; padding: 28px 30px; margin: 24px 0; box-shadow: 0 12px 36px rgba(21, 36, 61, 0.06); }
+  .price-top { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+  .price-name { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); }
+  .price-fig { font-family: 'Fraunces', serif; font-size: 2.7rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .price-terms { border-top: 1px solid var(--rule); margin-top: 18px; padding-top: 16px; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 0; max-width: none; }
+  .price-terms b { color: var(--ink); font-weight: 600; }
+
+  .guarantee { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 18px 22px; font-size: 1rem; line-height: 1.7; max-width: none; margin-bottom: 0; }
+  .guarantee b { color: var(--ink); font-weight: 600; }
+
+  .form-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 30px 30px 26px; margin-top: 24px; box-shadow: 0 12px 36px rgba(21, 36, 61, 0.06); }
+  .form-card h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .form-card .sub { font-size: 0.9rem; color: var(--ink-mute); margin-bottom: 22px; }
+  .field { display: grid; gap: 6px; margin-bottom: 15px; }
+  .field label { font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); }
+  .field input { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--ink); background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 8px; padding: 11px 13px; width: 100%; }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  .submit-btn { font-family: 'Inter', sans-serif; width: 100%; margin-top: 8px; padding: 14px 20px; border: 0; border-radius: 100px; background: var(--ink); color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .submit-btn:hover { background: var(--accent); }
+  .form-tiny { margin-top: 14px; font-size: 0.78rem; color: var(--ink-mute); text-align: center; }
+  .hp { position: absolute; left: -9999px; }
+
+  .fineprint { font-size: 0.85rem; color: var(--ink-mute); line-height: 1.65; border-top: 1px solid var(--rule); margin-top: 48px; padding-top: 18px; max-width: none; }
+
+  @media (max-width: 600px) {
+    .offer { padding: 36px 20px 60px; }
+    .pull { font-size: 1.15rem; padding: 16px 18px; }
+    .row2 { grid-template-columns: 1fr; }
+    .price-fig { font-size: 2.2rem; }
+  }
+
+  </style>
+  
+</head>
+<body>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/ai-seo-audit/" class="nav-link">AI SEO Audit</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
+
+  
+<div class="offer">
+
+  <div class="offer-flag">For home service contractors</div>
+  <h1>Is your website costing you calls?</h1>
+  <p class="offer-lede">We inspect your website the way you'd walk a job before quoting it. Every page. Every listing with your name on it. And whether ChatGPT gives out your number when a homeowner near you asks for someone in your trade.</p>
+
+  <h2>What's changed</h2>
+  <p>Google now puts an AI answer on top of roughly half the searches it handles, and more homeowners are skipping the results entirely and just asking ChatGPT. Here's why that should worry you.</p>
+  <p class="pull">A page of Google results shows ten businesses. An AI answer names two or three, then stops. There is no page two.</p>
+  <p>You're either on that short list or the homeowner never hears your name.</p>
+  <p>Here's the part most contractors don't know. <strong>The AI often isn't quoting your website at all.</strong> It's quoting Yelp or the Better Business Bureau talking about you. In a study of 318 million AI answers, Yelp was behind roughly 72% of local business citations in Google's AI answers. On ChatGPT, the BBB came first.</p>
+  <p>So if those listings are missing, wrong, or say something different from your website, that's what the homeowner hears about you. A perfect website doesn't fix it.</p>
+
+  <h2>What we check</h2>
+  <ul class="checks">
+    <li><span class="mark">&#10003;</span><span><b>Every page on your site</b><span class="sub">Dead links, missing pages, pages that are copies of each other, pages too thin to be any use.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>Whether AI can read your site at all</b><span class="sub">Some websites shut it out and nobody ever tells the owner. We test it and show you what came back.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>Your listings, not just Google</b><span class="sub">Google, Yelp, the BBB, Apple Maps, Bing and Nextdoor. We check each one exists, is claimed by you, and says the same name, phone, address and hours your website does. When they disagree, you get credit for neither. <em>Every one of these is free to claim and free to fix.</em></span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>The two listings almost nobody has claimed</b><span class="sub">Apple Maps is what every iPhone and every Siri question uses, and it's free. Bing is what ChatGPT's search runs on. Most contractors have never touched either. It's the closest thing to free money we find.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>The questions your customers actually ask</b><span class="sub">We run them on ChatGPT, Perplexity and Google. If your name doesn't come up, you get the list of who did.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>Up to three competitors</b><span class="sub">Same checks, side by side with yours, so you can see the gap.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>A report you can actually read</b><span class="sub">No jargon. Plus a separate page you can forward straight to whoever built your site.</span></span></li>
+    <li><span class="mark">&#10003;</span><span><b>A 30-minute call</b><span class="sub">We walk you through it and you ask whatever you want.</span></span></li>
+  </ul>
+
+  <h2>What we found on the last one</h2>
+  <div class="evidence">
+    <div class="head">Flooring contractor &middot; 176 pages checked</div>
+    <ul>
+      <li><span class="x">&#10007;</span><span>152 pages were the same page copied over and over, one for each town, four times through</span></li>
+      <li><span class="x">&#10007;</span><span>13 links went to pages that don't exist, including Gallery and Special Offers, both sitting in the main menu</span></li>
+      <li><span class="x">&#10007;</span><span>2 pages were showing raw computer code to anyone who clicked them</span></li>
+      <li><span class="x">&#10007;</span><span>The phone number on the website wasn't the one on Google. The old one belonged to a marketing company he'd already left</span></li>
+      <li><span class="x">&#10007;</span><span>Pages built by that old marketing company were still live on his site</span></li>
+      <li><span class="x">&#10007;</span><span>Not one page answered a question a real customer would ask</span></li>
+    </ul>
+  </div>
+  <p class="caption">None of it showed up in his website traffic report. He had no idea any of it was there.</p>
+
+  <h2>What we won't do</h2>
+  <p>You've probably been pitched some of this already.</p>
+  <ul class="checks">
+    <li><span class="mark no">&#10007;</span><span><b>We won't hand you a score out of 100</b><span class="sub">You get the actual problem and what we saw, so you or your web guy can check it yourself. The report ends with one line you can paste in to confirm the biggest finding in ten seconds.</span></span></li>
+    <li><span class="mark no">&#10007;</span><span><b>We won't promise to make you number one in ChatGPT</b><span class="sub">There's no such thing. Ask it the same question twice and you get different companies. What's real is how often you get named, and that we can move.</span></span></li>
+    <li><span class="mark no">&#10007;</span><span><b>We won't tell you to buy a directory membership</b><span class="sub">Every listing we check is free to claim and free to correct. BBB accreditation, for example, runs several hundred dollars a year and buys you a seal. It does not buy your rating, and you don't need it for your profile to be right.</span></span></li>
+    <li><span class="mark no">&#10007;</span><span><b>We won't sell you the trendy add-ons</b><span class="sub">There's a file some companies charge to install that no AI company has confirmed it even reads. If a fix is cheap and probably useless, we'll say so and you can skip it.</span></span></li>
+    <li><span class="mark no">&#10007;</span><span><b>We won't tell you to change what's working</b><span class="sub">Anything already earning you calls goes on a do-not-touch list at the top of the report.</span></span></li>
+  </ul>
+
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li>You send your website address and the towns you cover. That's the whole setup.</li>
+    <li>We do the inspection. You spend about ten minutes on your phone running a short list of questions we send you.</li>
+    <li>Five business days later you get the report, the to-do list in order, and the call.</li>
+  </ol>
+
+  <h2>What it costs</h2>
+  <div class="price-card">
+    <div class="price-top">
+      <span class="price-name">Website &amp; Listings Inspection</span>
+      <span class="price-fig">$750</span>
+    </div>
+    <p class="price-terms">One time. Nothing monthly, no contract. <b>If you hire us to fix what we find within 30 days, the whole $750 comes off that bill</b> — so the inspection ends up costing you nothing. For most contractors this is less than one job. Bigger sites or more than one location, we'll quote it.</p>
+  </div>
+  <p class="guarantee"><b>If we don't find at least five real problems across your site and listings, you don't pay.</b> No invoice, no half price. So far we haven't come close.</p>
+
+  <div class="form-card">
+    <h3>Send me your website</h3>
+    <p class="sub">I'll tell you what I find. No contract, no monthly fee, no obligation to hire us for the fixes.</p>
+    <form name="seo-audit" method="POST" data-netlify="true" netlify-honeypot="company-fax" action="/thank-you/">
+      <input type="hidden" name="form-name" value="seo-audit">
+      <p class="hp"><label>Leave this empty: <input name="company-fax"></label></p>
+      <div class="row2">
+        <div class="field">
+          <label for="a-name">Your name</label>
+          <input id="a-name" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="a-business">Business name</label>
+          <input id="a-business" type="text" name="business" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="field">
+        <label for="a-website">Website address</label>
+        <input id="a-website" type="text" name="website" placeholder="yourcompany.com" required>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="a-email">Email</label>
+          <input id="a-email" type="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="a-phone">Phone</label>
+          <input id="a-phone" type="tel" name="phone" autocomplete="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="a-towns">Towns you cover</label>
+        <input id="a-towns" type="text" name="towns" placeholder="St. Louis, Kirkwood, Chesterfield" required>
+      </div>
+      <button type="submit" class="submit-btn">Request the inspection</button>
+      <p class="form-tiny">We reply within one business day. Your details aren't shared or sold.</p>
+    </form>
+  </div>
+
+  <p class="fineprint">Straight talk on timing: anything blocking AI from reading your site, and any listing that's wrong, stops costing you the day it's fixed. Content and review work usually takes 60 to 90 days to show up in your numbers. Sources for the figures above, available on request: BrightEdge AI Overview tracking (March 2026); the Yelp and BBB citation shares are from Foundation Marketing and AirOps, who counted 318 million citations across 28.5 million AI answers (published May 2026).</p>
+
+</div>
+
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

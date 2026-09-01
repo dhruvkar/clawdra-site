@@ -12,6 +12,10 @@
 
 Step-by-step guides showing real OpenClaw builds you can replicate: https://clawdrop.org/playbooks/
 
+## Services
+
+- [AI SEO Audit](https://clawdrop.org/ai-seo-audit/): A $750 one-time website and listings inspection for home service contractors. Checks every page, whether AI crawlers can read the site, and whether Google, Yelp, BBB, Apple Maps, Bing and Nextdoor listings agree with each other. Credited back against fix work.
+
 ## Newsletter
 
 ClawDrop delivers 5 real OpenClaw builds every Tuesday. Subscribe at https://clawdrop.org/

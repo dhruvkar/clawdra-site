@@ -64,7 +64,7 @@
     .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
     .logo:hover { color: var(--ink); }
     .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; align-items: center; font-size: 0.9rem; }
     .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
     .nav-link:hover { color: var(--accent); }
     .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
@@ -76,7 +76,8 @@
 
     @media (max-width: 600px) {
       nav { padding: 16px 0; }
-      .nav-links { gap: 14px; font-size: 0.82rem; }
+      .nav-links { gap: 10px 14px; font-size: 0.8rem; }
+      nav .container-wide { gap: 12px; }
       .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
       .logo { font-size: 1.25rem; }
     }
@@ -109,6 +110,7 @@
       <div class="nav-links">
         <a href="/playbooks/" class="nav-link">Playbooks</a>
         <a href="/learn/" class="nav-link">Learn</a>
+        <a href="/ai-seo-audit/" class="nav-link">AI SEO Audit</a>
         <a href="/#about" class="nav-link">About</a>
         <a href="/#subscribe" class="nav-cta">Subscribe</a>
       </div>
@@ -125,6 +127,39 @@
     <div class="cards">
       
       
+        
+        <a href="/playbooks/open-source-ai-c-suite/" class="card">
+          <div class="card-title">Your Business Has No CFO. This One Is Free and Remembers Last Quarter.</div>
+          <div class="card-desc">OpenExecutive is an open source AI executive team. Eight specialists behind one voice, with memory of every decision it gave you. 1,544 stars and the front page of Hacker News in a week.</div>
+          <div class="card-meta">
+            <span class="card-date">August 31, 2026</span>
+            <span class="card-badge">Intermediate</span>
+            <span class="card-badge">Free and open source. You pay Anthropic for usage, roughly $20-100/mo depending on how much you ask it.</span>
+            <span class="card-badge">An evening to install. A weekend if you feed it your own documents first.</span>
+          </div>
+        </a>
+        
+        <a href="/playbooks/threshold-watch-agent/" class="card">
+          <div class="card-title">He Crossed a $100,000 Line He Had Never Heard Of. The Penalty Cost More Than an Accountant.</div>
+          <div class="card-desc">His sales tax software filed everything correctly and never mentioned that his sales into another state had triggered a whole new obligation. Here is the agent that watches the lines you are about to cross.</div>
+          <div class="card-meta">
+            <span class="card-date">August 31, 2026</span>
+            <span class="card-badge">Beginner</span>
+            <span class="card-badge">Under $20/mo if you already pay for Claude. The nexus tools are $50-200/mo and worth it if you sell across state lines.</span>
+            <span class="card-badge">An afternoon to list your numbers and your dates. Then it runs weekly.</span>
+          </div>
+        </a>
+        
+        <a href="/playbooks/whatsapp-tire-shop-agent/" class="card">
+          <div class="card-title">A Customer Sends a Photo of a Tire. The Shop Sends Back a Price and Holds the Stock.</div>
+          <div class="card-desc">A tire shop runs its whole sales counter over WhatsApp. Photo of the sidewall, voice note, or 2017 Chevy Onix all turn into a priced offer with the stock reserved. The operators who reviewed it explain how to stop an agent giving your margin away.</div>
+          <div class="card-meta">
+            <span class="card-date">August 31, 2026</span>
+            <span class="card-badge">Intermediate</span>
+            <span class="card-badge">Roughly $50-150/mo. WhatsApp service replies are free, you pay for the AI and the hosting.</span>
+            <span class="card-badge">A weekend for the happy path. A month before you trust it with pricing.</span>
+          </div>
+        </a>
         
         <a href="/playbooks/client-memory-keyboard/" class="card">
           <div class="card-title">Nobody Selling a $2M Yacht Stops Mid-Deal to Fill In a CRM. So He Put the CRM Above the Keyboard.</div>

@@ -6,7 +6,7 @@
     <description>Playbooks, guides, and use cases for OpenClaw — the open-source AI agent framework.</description>
     <language>en-us</language>
     <atom:link href="https://clawdrop.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 19 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>Build a Polymarket Trading Bot</title>
       <link>https://clawdrop.org/playbooks/polymarket-trading-bot/</link>
