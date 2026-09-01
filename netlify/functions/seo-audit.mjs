@@ -26,6 +26,12 @@ const NEWSLETTER_TAG = "newsletter";
 const SOURCE = "clawdrop.org - AI SEO Audit";
 
 const SUCCESS_URL = "/audit-requested/";
+
+// GHL's public API has no create-workflow endpoint (only get-workflow and
+// add-contact-to-workflow), so the "tell me when a lead lands" step cannot be
+// built in GHL from here. It is done directly instead, over the same Telegram
+// bot the other alerting uses.
+const TELEGRAM_API = "https://api.telegram.org";
 const FAILURE_URL = "/ai-seo-audit/?error=1";
 
 function redirect(location) {
@@ -66,6 +72,35 @@ async function ghlFetch(path, init, attempts = 3) {
   }
   return { ok: false, error: lastError };
 }
+
+/**
+ * Best-effort alert. Never throws and never blocks the response: the lead is
+ * already saved in GHL by the time this runs, so a Telegram outage must not
+ * turn a captured lead into an error page for the customer.
+ */
+async function notify(text) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chat = process.env.TELEGRAM_HOME_CHANNEL;
+  if (!token || !chat) return;
+  try {
+    const res = await fetch(`${TELEGRAM_API}/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chat,
+        text,
+        parse_mode: "HTML",
+        disable_web_page_preview: true,
+      }),
+      signal: AbortSignal.timeout(8_000),
+    });
+    if (!res.ok) console.error("seo-audit: telegram", res.status, (await res.text()).slice(0, 200));
+  } catch (err) {
+    console.error("seo-audit: telegram", err instanceof Error ? err.message : String(err));
+  }
+}
+
+const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 function splitName(full) {
   const parts = (full ?? "").trim().split(/\s+/).filter(Boolean);
@@ -176,6 +211,21 @@ export default async (req) => {
     body: JSON.stringify({ body: noteBody }),
   });
   if (!noteRes.ok) console.error("seo-audit: note failed", noteRes.error, contactId);
+
+  const crmLink = `https://app.gohighlevel.com/v2/location/${locationId}/contacts/detail/${contactId}`;
+  await notify(
+    [
+      trapped ? "⚠️ <b>AI SEO Audit request</b> (spam-flagged, check it)" : "🔦 <b>New AI SEO Audit request</b>",
+      "",
+      `<b>${esc(business)}</b>`,
+      `${esc(website)}`,
+      `Towns: ${esc(towns || "not given")}`,
+      "",
+      `${esc(name)} — ${esc(email)}${phone ? ` — ${esc(phone)}` : ""}`,
+      "",
+      `<a href="${crmLink}">Open in GHL</a>`,
+    ].join("\n"),
+  );
 
   console.log("seo-audit: captured", contactId, trapped ? "(flagged)" : "");
   return redirect(SUCCESS_URL);
