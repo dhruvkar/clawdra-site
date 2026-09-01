@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share your build — ClawDrop</title>
-    <meta name="description" content="Submit your OpenClaw build and get featured in ClawDrop newsletter.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #fdfaf3;
-            --paper: #ffffff;
-            --ink: #15243d;
-            --ink-soft: #4a5773;
-            --ink-mute: #8b95a8;
-            --rule: #ece5d4;
-            --accent: #d8552c;
-            --accent-hover: #c04a24;
-            --warm: #f5ecd7;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            min-height: 100vh;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: var(--accent); }
-        a:hover { color: var(--accent-hover); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share your build — ClawDrop</title>
+  <meta name="description" content="Submit your OpenClaw build and get featured in the ClawDrop newsletter.">
+  <meta property="og:title" content="Share your build — ClawDrop">
+  <meta property="og:description" content="Submit your OpenClaw build and get featured in the ClawDrop newsletter.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clawdrop.org/submit/">
+  <meta property="og:site_name" content="ClawDrop">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Share your build — ClawDrop">
+  <meta name="twitter:description" content="Submit your OpenClaw build and get featured in the ClawDrop newsletter.">
+  <link rel="canonical" href="https://clawdrop.org/submit/">
+  <link rel="alternate" type="application/rss+xml" title="ClawDrop" href="https://clawdrop.org/feed.xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKRMLFFMRB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKRMLFFMRB');
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf3;
+      --paper: #ffffff;
+      --ink: #15243d;
+      --ink-soft: #4a5773;
+      --ink-mute: #8b95a8;
+      --rule: #ece5d4;
+      --rule-strong: #d8d1bc;
+      --accent: #d8552c;
+      --accent-hover: #c04a24;
+      --accent-soft: #fdebe2;
+      --warm: #f5ecd7;
+      --code-bg: #15243d;
+      --code-text: #e8eef7;
+      --code-accent: #ffb38a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
 
-        .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
-        .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
 
-        nav { padding: 22px 0; border-bottom: 1px solid var(--rule); }
-        nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-        .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
-        .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.9rem; }
-        .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; }
-        .nav-link:hover { color: var(--accent); }
-        .nav-cta { padding: 10px 20px; background: var(--ink); color: white; border-radius: 100px; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
-        .nav-cta:hover { background: var(--accent); color: white; }
+    nav { padding: 22px 0; background: var(--bg); border-bottom: 1px solid var(--rule); }
+    nav .container-wide { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .logo:hover { color: var(--ink); }
+    .logo-img { width: 32px; height: 32px; border-radius: 7px; display: block; flex-shrink: 0; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; align-items: center; font-size: 0.9rem; }
+    .nav-link { color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: var(--ink); color: white; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent); color: white; }
 
-        .content { padding: 70px 0 30px; text-align: center; }
-        h1 { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 18px; color: var(--ink); }
-        h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
-        .subtitle { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; max-width: 540px; margin: 0 auto 14px; }
-        .subtitle strong { color: var(--ink); font-weight: 600; }
-        .note { font-size: 0.92rem; color: var(--ink-mute); line-height: 1.6; max-width: 480px; margin: 0 auto 48px; }
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
 
-        .form-section { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 40px 32px; margin-bottom: 40px; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
-        .form-section .label { font-size: 0.78rem; color: var(--ink-mute); margin-bottom: 16px; text-align: center; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-        .form-section .email { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; color: var(--accent); letter-spacing: 0.06em; text-align: center; }
+    @media (max-width: 600px) {
+      nav { padding: 16px 0; }
+      .nav-links { gap: 10px 14px; font-size: 0.8rem; }
+      nav .container-wide { gap: 12px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
+      .logo { font-size: 1.25rem; }
+    }
 
-        footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--rule); margin-top: 40px; font-size: 0.85rem; color: var(--ink-mute); }
-        footer a { color: var(--ink-soft); text-decoration: none; }
-        footer a:hover { color: var(--accent); }
+    
+  .content { padding: 70px 0 30px; text-align: center; }
+  h1 { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 18px; color: var(--ink); }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .subtitle { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; max-width: 540px; margin: 0 auto 14px; }
+  .subtitle strong { color: var(--ink); font-weight: 600; }
+  .note { font-size: 0.92rem; color: var(--ink-mute); line-height: 1.6; max-width: 480px; margin: 0 auto 48px; }
+  .form-section { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 40px 32px; margin-bottom: 40px; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .form-section .label { font-size: 0.78rem; color: var(--ink-mute); margin-bottom: 16px; text-align: center; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .form-section .email { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; color: var(--accent); letter-spacing: 0.06em; text-align: center; }
 
-        @media (max-width: 600px) {
-            .content { padding: 50px 0 20px; }
-            .form-section { padding: 28px 20px; }
-            .nav-links { gap: 14px; font-size: 0.82rem; }
-            .nav-cta { padding: 8px 14px; font-size: 0.78rem; }
-            .logo { font-size: 1.25rem; }
-        }
-    </style>
+  </style>
+  
 </head>
 <body>
-    <nav>
-        <div class="container-wide">
-            <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
-            <div class="nav-links">
-                <a href="/playbooks/" class="nav-link">Playbooks</a>
-                <a href="/learn/" class="nav-link">Learn</a>
+  <nav>
+    <div class="container-wide">
+      <a href="/" class="logo"><img src="/assets/clawdrop-logo.png" alt="ClawDrop" class="logo-img">ClawDrop</a>
+      <div class="nav-links">
+        <a href="/playbooks/" class="nav-link">Playbooks</a>
+        <a href="/learn/" class="nav-link">Learn</a>
         <a href="/ai-seo-audit/" class="nav-link">AI SEO Audit</a>
-                <a href="/#subscribe" class="nav-cta">Subscribe</a>
-            </div>
-        </div>
-    </nav>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#subscribe" class="nav-cta">Subscribe</a>
+      </div>
+    </div>
+  </nav>
 
-    <div class="container">
+  
+<div class="container">
         <section class="content">
             <h1>Submit a <em>build</em></h1>
             <p class="subtitle">
@@ -100,13 +128,24 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container-wide">
-            <p>
-                Built with <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a> ·
-                A <a href="https://fundedlist.com" target="_blank">FundedList</a> project
-            </p>
-        </div>
-    </footer>
+
+  <footer>
+    <div class="container-wide">
+      <p>© 2026 ClawDrop · Practical AI for operators · <a href="/privacy/">Privacy</a></p>
+      <p>A Wints LLC company</p>
+    </div>
+  </footer>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>

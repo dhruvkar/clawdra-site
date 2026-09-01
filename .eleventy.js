@@ -4,9 +4,6 @@ module.exports = function(eleventyConfig) {
 
   // Passthrough copy for existing static pages and assets
   eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy("submit");
-  eleventyConfig.addPassthroughCopy("thank-you");
-  eleventyConfig.addPassthroughCopy("privacy");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("llms.txt");

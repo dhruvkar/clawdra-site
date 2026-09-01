@@ -17,6 +17,7 @@ const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 const USER_AGENT = "clawdrop-site/1.0 (+https://clawdrop.org)";
 const TAG = "seo-audit-request";
+const SPAM_TAG = "possible-spam";
 const SOURCE = "clawdrop.org - AI SEO Audit";
 
 const SUCCESS_URL = "/audit-requested/";
@@ -86,9 +87,17 @@ export default async (req) => {
   }
   const get = (k) => (form.get(k) ?? "").toString().trim();
 
-  // Honeypot. Bots fill every field they find; people never see this one.
-  // Answer with the success page so the bot has nothing to learn from.
-  if (get("company-fax")) return redirect(SUCCESS_URL);
+  // Honeypot. Previously this silently returned the success page and wrote
+  // nothing, which is the worst possible failure mode for a form like this:
+  // a real lead vanishes and the person is shown a confirmation. The original
+  // field was also named "company-fax", and both "company" and "fax" are
+  // Chrome autofill tokens, so a browser filling it in for a genuine customer
+  // was a live possibility rather than a theoretical one.
+  //
+  // Now nothing is ever dropped. A tripped honeypot only tags the contact for
+  // review. One spam record costs a few seconds to delete; one lost inspection
+  // request costs $750.
+  const trapped = Boolean(get("zz_confirm"));
 
   const name = get("name");
   const email = get("email");
@@ -141,12 +150,13 @@ export default async (req) => {
   // or a note is not worth showing this person an error page.
   const tagRes = await ghlFetch(`/contacts/${contactId}/tags`, {
     method: "POST",
-    body: JSON.stringify({ tags: [TAG] }),
+    body: JSON.stringify({ tags: trapped ? [TAG, SPAM_TAG] : [TAG] }),
   });
   if (!tagRes.ok) console.error("seo-audit: tag failed", tagRes.error, contactId);
 
   const noteBody = [
     "AI SEO Audit request from clawdrop.org",
+    ...(trapped ? ["FLAGGED: hidden anti-spam field was filled. Could be a bot, or a browser autofilling it. Check before deleting."] : []),
     `Business: ${business}`,
     `Website: ${website}`,
     `Towns covered: ${towns || "(not given)"}`,
@@ -160,6 +170,7 @@ export default async (req) => {
   });
   if (!noteRes.ok) console.error("seo-audit: note failed", noteRes.error, contactId);
 
+  console.log("seo-audit: captured", contactId, trapped ? "(flagged)" : "");
   return redirect(SUCCESS_URL);
 };
 

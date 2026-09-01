@@ -135,7 +135,7 @@
   .submit-btn { font-family: 'Inter', sans-serif; width: 100%; margin-top: 8px; padding: 14px 20px; border: 0; border-radius: 100px; background: var(--ink); color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
   .submit-btn:hover { background: var(--accent); }
   .form-tiny { margin-top: 14px; font-size: 0.78rem; color: var(--ink-mute); text-align: center; }
-  .hp { position: absolute; left: -9999px; }
+  .hp { display: none; }
   .form-error { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 18px; font-size: 0.95rem; color: var(--ink); }
 
   .fineprint { font-size: 0.85rem; color: var(--ink-mute); line-height: 1.65; border-top: 1px solid var(--rule); margin-top: 48px; padding-top: 18px; max-width: none; }
@@ -236,7 +236,7 @@
     <h3>Send me your website</h3>
     <p class="sub">I'll tell you what I find. No contract, no monthly fee, no obligation to hire us for the fixes.</p>
     <form name="seo-audit" method="POST" action="/api/seo-audit">
-      <p class="hp"><label>Leave this empty: <input name="company-fax" tabindex="-1" autocomplete="off"></label></p>
+      <div class="hp" aria-hidden="true"><label>Leave this blank<input type="text" name="zz_confirm" tabindex="-1" autocomplete="off"></label></div>
       <div class="row2">
         <div class="field">
           <label for="a-name">Your name</label>

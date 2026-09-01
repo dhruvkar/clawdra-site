@@ -1,0 +1,38 @@
+---
+title: "Share your build"
+description: "Submit your OpenClaw build and get featured in the ClawDrop newsletter."
+permalink: /submit/
+eleventyExcludeFromCollections: true
+---
+{% extends "base.njk" %}
+
+{% block styles %}
+  .content { padding: 70px 0 30px; text-align: center; }
+  h1 { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 18px; color: var(--ink); }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .subtitle { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink-soft); line-height: 1.55; max-width: 540px; margin: 0 auto 14px; }
+  .subtitle strong { color: var(--ink); font-weight: 600; }
+  .note { font-size: 0.92rem; color: var(--ink-mute); line-height: 1.6; max-width: 480px; margin: 0 auto 48px; }
+  .form-section { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 40px 32px; margin-bottom: 40px; box-shadow: 0 4px 16px rgba(21, 36, 61, 0.04); }
+  .form-section .label { font-size: 0.78rem; color: var(--ink-mute); margin-bottom: 16px; text-align: center; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .form-section .email { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; color: var(--accent); letter-spacing: 0.06em; text-align: center; }
+{% endblock %}
+
+{% block body %}
+<div class="container">
+        <section class="content">
+            <h1>Submit a <em>build</em></h1>
+            <p class="subtitle">
+                <strong>What are you building with OpenClaw?</strong> An automation, a workflow, a weird experiment — if it's clever, we want to feature it.
+            </p>
+            <p class="note">
+                Takes about 2 minutes. The weirder, the better.
+            </p>
+        </section>
+
+        <div class="form-section">
+            <p class="label">Send us your build</p>
+            <p class="email">dhruv &nbsp;AT&nbsp; clawdrop &nbsp;DOT&nbsp; org</p>
+        </div>
+    </div>
+{% endblock %}
