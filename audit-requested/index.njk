@@ -1,0 +1,38 @@
+---
+title: "Request received"
+description: "Your AI SEO Audit request is in. Here's what happens next and when."
+permalink: /audit-requested/
+eleventyExcludeFromCollections: true
+---
+{% extends "base.njk" %}
+
+{% block styles %}
+  .done { max-width: 620px; margin: 0 auto; padding: 72px 28px 90px; }
+  .done h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4.6vw, 2.7rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+  .done .lede { font-size: 1.1rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 34px; }
+  .done h2 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; color: var(--ink); margin: 0 0 16px; }
+  .next { list-style: none; padding: 0; margin: 0 0 34px; display: grid; gap: 15px; counter-reset: s; }
+  .next li { display: grid; grid-template-columns: 26px 1fr; gap: 13px; align-items: start; font-size: 1rem; line-height: 1.7; color: var(--ink); }
+  .next li::before { counter-increment: s; content: counter(s); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fff; background: var(--ink); width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; margin-top: 4px; }
+  .aside { background: var(--warm); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 0.98rem; line-height: 1.7; color: var(--ink); margin-bottom: 30px; }
+  .done .back { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.92rem; }
+  .done .back:hover { color: var(--accent-hover); }
+{% endblock %}
+
+{% block body %}
+<div class="done">
+  <h1>Got it. Your inspection is booked.</h1>
+  <p class="lede">Nothing else for you to do right now. Here's exactly what happens next.</p>
+
+  <h2>What happens next</h2>
+  <ol class="next">
+    <li>I'll reply within one business day to confirm I've got the right website and the right towns.</li>
+    <li>You'll get a short list of questions to run on your own phone. It takes about ten minutes and it's the one part I can't do for you, because an AI answers differently for you than it does for me.</li>
+    <li>Five business days from that, you get the written report, the fix list in order, and a 30-minute call to walk through it.</li>
+  </ol>
+
+  <p class="aside">Nothing is charged until we've spoken. And if the inspection doesn't turn up at least five real problems across your site and listings, there's no invoice at all.</p>
+
+  <a href="/ai-seo-audit/" class="back">&larr; Back to the inspection details</a>
+</div>
+{% endblock %}

@@ -19,7 +19,7 @@ const USER_AGENT = "clawdrop-site/1.0 (+https://clawdrop.org)";
 const TAG = "seo-audit-request";
 const SOURCE = "clawdrop.org - AI SEO Audit";
 
-const SUCCESS_URL = "/thank-you/";
+const SUCCESS_URL = "/audit-requested/";
 const FAILURE_URL = "/ai-seo-audit/?error=1";
 
 function redirect(location) {
